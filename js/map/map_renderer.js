@@ -6,6 +6,10 @@ function drawMap(){
         for(let j=0;j<MAP_WIDTH;j++){
             x = baseX + ((j*BASE_SCALE)*2 - (i*BASE_SCALE)*2);
             y = baseY + (j*BASE_SCALE)+(i*BASE_SCALE);
+            if(i==Player.y*-1 && j==Player.x*-1){ 
+                drawTile(x, y, 0, "#ffffff");
+                continue;
+            }
             drawTile(x, y, 0, mapTiles[i][j].type);
         }
     }

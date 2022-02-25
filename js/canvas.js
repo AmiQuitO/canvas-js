@@ -6,7 +6,6 @@ const MOVEMENT_SPEED = 1;
 document.write(`<canvas width='${CANVAS_WIDTH}' height='${CANVAS_HEIGHT}'></canvas>`);
 
 const CTX = document.querySelector("canvas");
-CTX.style.border = "1px solid black";
 const C = CTX.getContext("2d");
 
 function beginCanvas(){
@@ -19,6 +18,6 @@ function clearCanvas(){
 }
 function drawPos(){
     C.font = '48px monospace';
-    C.fillStyle = "black";
+    C.fillStyle = "#ffffff";
     C.fillText(`${Player.y}, ${Player.x}`, 0, 40);
 }
