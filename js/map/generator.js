@@ -8,6 +8,8 @@ class Tile{
     constructor(type, collision){
         this.type = type;
         this.collision = collision;
+        this.sprite = new Image();
+        //sprite = type + ".png";
     }
 }
 
@@ -19,11 +21,15 @@ function generateMap(){
             let collisionsmaybe = false;
             if(collisionrandom == 10){
                 pickedColor = TILE_COLOR.length-1;
-                collisionsmaybe = true;
+                collisionsmaybe = true;           
+                spritee = "./img/tiletest.png";
             }
-            if(mapTiles[i] == undefined) 
+            if(mapTiles[i] == undefined)
                 mapTiles[i] = [];
                 mapTiles[i][j] = new Tile(TILE_COLOR[pickedColor], collisionsmaybe);
+            if(collisionrandom == 10){
+                mapTiles[i][j].sprite.src = spritee;
+            }
         }
     }
     console.log(mapTiles);
