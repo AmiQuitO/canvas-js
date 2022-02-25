@@ -20,13 +20,17 @@ window.addEventListener("keydown", function (event) {
 }, true);
 
 function isColliding(y, x){
-    y *= -1;
-    x *= -1;
-    if(mapTiles[Player.y+y][Player.x+x].collision == true || Player.x + x > 0 || Player.y + y > 0){
-        console.log(y, x);
+    if(Player.x + x > 0 || Player.y + y > 0){ // leaving the map
+        console.log("blok");
         return true;
-    }else{
-        console.log("wolne");
-        return false;
+    }else{ // objects collision
+        y = (Player.y + y) * -1;
+        x = (Player.x + x) * -1;
+        if(mapTiles[y][x].collision == true){
+            console.log(mapTiles[y][x].collision);
+            return true;
+        }else{
+            return false;
+        }
     }
 }

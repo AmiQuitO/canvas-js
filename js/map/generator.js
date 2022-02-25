@@ -14,7 +14,7 @@ class Tile{
 function generateMap(){
     for(i=0;i<MAP_HEIGHT;i++){
         for(j=0;j<MAP_WIDTH;j++){
-            let pickedColor = Math.floor(Math.random()*TILE_COLOR.length);
+            let pickedColor = Math.floor(Math.random()*(TILE_COLOR.length-1));
             let collisionrandom = Math.floor(Math.random()*11); // tests
             let collisionsmaybe = false;
             if(collisionrandom == 10){
