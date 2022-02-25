@@ -4,6 +4,6 @@ class Controller{
         this.x = x;
     }
 };
-let Player = new Controller(0 , 0);
+let Player = new Controller(-5 , -5 );
 generateMap();
 beginCanvas();

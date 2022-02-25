@@ -25,5 +25,4 @@ function drawTile(posX, posY, scale, type){
     C.lineTo(posX, posY);
     C.fillStyle = type;
     C.fill();
-    C.stroke();
 }
