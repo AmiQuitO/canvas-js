@@ -1,6 +1,7 @@
 const MAP_WIDTH = 20;
 const MAP_HEIGHT = 25;
-const TILE_COLOR = ["#bdc940", "#bdc940","#bdc940","#bdc940","#bdc940", "#888536", "#4d4b17", "#263d14", "#208a7d", "black"];
+const TILE_COLOR = ["#c1f376", "#a1df50", "#79d021", "#5fc314", "#55c233", "#37ae0f" ];
+// color for background on dungeons? #e4dcb7
 
 let mapTiles = [];
 
@@ -8,20 +9,19 @@ function generateMap(){
     for(i=0;i<MAP_HEIGHT;i++){
         for(j=0;j<MAP_WIDTH;j++){
             let pickedColor = Math.floor(Math.random()*(TILE_COLOR.length-1));
-            let collisionrandom = Math.floor(Math.random()*11); // tests
+            let collisionrandom = Math.floor(Math.random()*8); // tests
             let collisionsmaybe = false;
-            if(collisionrandom == 10){
-                //pickedColor = TILE_COLOR.length-1;
+            if(collisionrandom == 1){
                 collisionsmaybe = true;           
-                spritee = "./img/tiletest.png";
-                spriteee = "./img/sciana.png";
+                spritee = "./img/tileFloor.png";
+                spriteee = "./img/tileWall.png";
             }
             if(mapTiles[i] == undefined)
                 mapTiles[i] = [];
                 mapTiles[i][j] = new Tile(TILE_COLOR[pickedColor], collisionsmaybe);
-            if(collisionrandom == 10){
-                mapTiles[i][j].sprite.src = spritee;
-                mapTiles[i][j].sprite2.src = spriteee;
+            if(collisionrandom == 1){
+                mapTiles[i][j].spriteFloor.src = spritee;
+                mapTiles[i][j].spriteWall.src = spriteee;
             }
         }
     }

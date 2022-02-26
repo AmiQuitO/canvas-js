@@ -1,21 +1,21 @@
 class Tile{
     constructor(type, collision){
         this.type = type;
-
+        // future types: exit of the stage | get up / get down one level |
         this.height = 0;
         this.collision = collision;
         if (collision) {
-            this.height = Math.round(Math.random()*3 + 1);
+            this.height = Math.round(Math.random()*1 + 1);
         }
 
-        this.sprite = new Image();
-        this.sprite2 = new Image();
+        this.spriteFloor = new Image();
+        this.spriteWall = new Image();
         //sprite = type + ".png";
     }
     drawTile(posX, posY, scale){
         scale = scale + BASE_SCALE;
         let height = 0;
-        height = scale * this.height
+        height = scale * this.height;
 
         C.beginPath();
         C.moveTo(posX, posY-height);                    //top
@@ -27,12 +27,13 @@ class Tile{
         C.lineTo(posX, posY-height);                    //top
         C.fillStyle = this.type;
         C.fill();
+        C.stroke();
         
 
         for (let h = 0; h < height; h+=scale) {
-            C.drawImage(this.sprite2,   posX-(BASE_SCALE*2), posY-h,              BASE_SCALE*4,BASE_SCALE*2); //sciana
+            C.drawImage(this.spriteWall,   posX-(BASE_SCALE*2), posY-h,              BASE_SCALE*4,BASE_SCALE*2); //sciana
             if (h == height - scale) {
-                C.drawImage(this.sprite,    posX-(BASE_SCALE*2), posY-BASE_SCALE-h,   BASE_SCALE*4,BASE_SCALE*2); //podloga
+                C.drawImage(this.spriteFloor,    posX-(BASE_SCALE*2), posY-BASE_SCALE-h,   BASE_SCALE*4,BASE_SCALE*2); //podloga
             }      
         }
         //C.drawImage(this.sprite, posX-(BASE_SCALE*2), posY, BASE_SCALE*4,BASE_SCALE*2);            

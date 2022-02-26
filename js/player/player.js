@@ -1,4 +1,5 @@
-const SPRITE_SIZE = 32;
+const SPRITE_SIZE = 32; // better not change
+const MOVEMENT_SPEED = 1;
 class Controller{
     constructor(y, x){
         this.y = y;
@@ -6,5 +7,5 @@ class Controller{
         this.sprite = new Image();
     }
 };
-let Player = new Controller(-5 , -5 );
+let Player = new Controller(-5 , -5);
 Player.sprite.src = "./img/PlayerSprite.png";

@@ -1,7 +1,6 @@
 const CANVAS_HEIGHT = 450;
 const CANVAS_WIDTH = 800;
 const BASE_SCALE = 20;
-const MOVEMENT_SPEED = 1;
 
 document.write(`<canvas width='${CANVAS_WIDTH}' height='${CANVAS_HEIGHT}'></canvas>`);
 
