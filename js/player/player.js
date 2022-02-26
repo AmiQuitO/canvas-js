@@ -7,4 +7,4 @@ class Controller{
     }
 };
 let Player = new Controller(-5 , -5 );
-Player.sprite.src = "./img/tiletest.png";
+Player.sprite.src = "./img/PlayerSprite.png";

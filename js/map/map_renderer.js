@@ -7,12 +7,15 @@ function drawMap(){
             x = baseX + ((j*BASE_SCALE)*2 - (i*BASE_SCALE)*2);
             y = baseY + (j*BASE_SCALE)+(i*BASE_SCALE);
             if(mapTiles[i][j].collision){
-                C.drawImage(mapTiles[i][j].sprite, x-(BASE_SCALE*2), y, BASE_SCALE*4,BASE_SCALE*2);
+                C.beginPath();
+                //C.drawImage(mapTiles[i][j].sprite, x-(BASE_SCALE*2), y, BASE_SCALE*4,BASE_SCALE*2);
+                C.drawImage(mapTiles[i][j].sprite, x-(BASE_SCALE*2), y-BASE_SCALE, BASE_SCALE*4,BASE_SCALE*2);
+                C.drawImage(mapTiles[i][j].sprite2, x-(BASE_SCALE*2), y, BASE_SCALE*4,BASE_SCALE*2);
             }else{
                 drawTile(x, y, 0, mapTiles[i][j].type);
             }
             if(i==Player.y*-1 && j==Player.x*-1){ 
-                C.drawImage(Player.sprite, (CANVAS_WIDTH/2)-(BASE_SCALE*2), CANVAS_HEIGHT/2-BASE_SCALE);
+                C.drawImage(Player.sprite, (CANVAS_WIDTH/2)-(SPRITE_SIZE/2), (CANVAS_HEIGHT/2)-(SPRITE_SIZE));
             }
         }
     }

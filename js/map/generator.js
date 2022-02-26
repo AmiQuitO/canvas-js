@@ -9,6 +9,7 @@ class Tile{
         this.type = type;
         this.collision = collision;
         this.sprite = new Image();
+        this.sprite2 = new Image();
         //sprite = type + ".png";
     }
 }
@@ -23,12 +24,14 @@ function generateMap(){
                 pickedColor = TILE_COLOR.length-1;
                 collisionsmaybe = true;           
                 spritee = "./img/tiletest.png";
+                spriteee = "./img/sciana.png";
             }
             if(mapTiles[i] == undefined)
                 mapTiles[i] = [];
                 mapTiles[i][j] = new Tile(TILE_COLOR[pickedColor], collisionsmaybe);
             if(collisionrandom == 10){
                 mapTiles[i][j].sprite.src = spritee;
+                mapTiles[i][j].sprite2.src = spriteee;
             }
         }
     }
