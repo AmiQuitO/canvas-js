@@ -1,7 +1,8 @@
 class Tile{
-    constructor(type, collision){
+    constructor(type, color, collision){
         this.type = type;
-        // future types: exit of the stage | get up / get down one level |
+        // future types: exit of the stage | get up / get down one level | destructibles wood minerals? | 
+        this.color = color;
         this.height = 0;
         this.collision = collision;
         if (collision) {
@@ -25,7 +26,7 @@ class Tile{
         C.lineTo(posX-(scale*2), posY+scale);           //right
         C.lineTo(posX-(scale*2), posY+scale-height);    //right top
         C.lineTo(posX, posY-height);                    //top
-        C.fillStyle = this.type;
+        C.fillStyle = this.color;
         C.fill();
         C.stroke();
         
@@ -33,10 +34,10 @@ class Tile{
         for (let h = 0; h < height; h+=scale) {
             C.drawImage(this.spriteWall,   posX-(BASE_SCALE*2), posY-h,              BASE_SCALE*4,BASE_SCALE*2); //sciana
             if (h == height - scale) {
-                C.drawImage(this.spriteFloor,    posX-(BASE_SCALE*2), posY-BASE_SCALE-h,   BASE_SCALE*4,BASE_SCALE*2); //podloga
+                //C.drawImage(this.spriteFloor,    posX-(BASE_SCALE*2), posY-BASE_SCALE-h,   BASE_SCALE*4,BASE_SCALE*2); //podloga
             }      
         }
-        //C.drawImage(this.sprite, posX-(BASE_SCALE*2), posY, BASE_SCALE*4,BASE_SCALE*2);            
+        C.drawImage(this.spriteWall, posX-(BASE_SCALE*2), posY, BASE_SCALE*4,BASE_SCALE*2);            
     
     }
     
