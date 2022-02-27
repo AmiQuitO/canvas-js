@@ -44,12 +44,12 @@ function generateChunks(){
     loadedChunks.push(new Chunk(0, 0)); 
     do{
         for(let lC=0; lC<loadedChunks.length;lC++){
-            for(let i=-1;i<1;i++){
-                for(let j=-1;j<-1; i++){
+            for(let i=-1;i<=1;i++){
+                for(let j=-1;j<=1; j++){
                     newCords = new Chunk(loadedChunks[lC].x+i , loadedChunks[lC].y+j);
                     
                     let isSame = false;
-                    if(!loadedChunks.length == 1){
+                    if(!loadedChunks.length === 1){
                         for(let aC=0; aC<loadedChunks.length;aC++){
                             isSame = isSameChunk(availableChunks[aC], loadedChunks[lC]);
                             if(isSame)
@@ -61,50 +61,16 @@ function generateChunks(){
                 }
             }
         }
-
-
-        do{
-            isAll = false;
-            for(let lC=0; lC<loadedChunks.length;lC++){
-                for(let aC=0; aC<loadedChunks.length;aC++){
-                    
-                }
-            }
-        }while(!isAll);
+        chosenChunk = Math.floor(Math.random()*availableChunks.length);
+        loadedChunks.push(availableChunks[chosenChunk]);
+        availableChunks.splice(chosenChunk, 1);
+        
+        console.log(loadedChunks.length);
     }while(loadedChunks.length <= chunksCount);
-
-
-    /*
-    for(let i=-1;i<1;i++){
-                    for(let j=-1;j<-1; i++){
-                        if(!chunksLoaded == 0){
-                            if(availableChunks[w].x = loadedChunks[w].x)
-                        }
-                        availableChunks.append(loadedChunks[w])
-                    }
-                }
-    */
-
-
-
-    console.log(mapChunks);
-    for(let i=0;i<(MAP_HEIGHT/CHUNKS_SIZE);i++){
-        mapChunks[i] = [];
-        for(let j=0;j<(MAP_WIDTH/CHUNKS_SIZE);j++){
-            if(Math.ceil(mapChunks.length/2)==i+1 && Math.ceil(mapChunks.length/2)==j){
-                console.log(i ,j);
-                mapChunks[i][j] = "1";
-                continue;
-            }
-            mapChunks[i][j] = "0";
-        }    
-    }
-    console.log(mapChunks);
-    return;
 }
 
 function isSameChunk(a, b){
-    if(a.x == b.x && a.y == b.y)
+    if(a.x === b.x && a.y === b.y)
         return true;
     return false;
 }
