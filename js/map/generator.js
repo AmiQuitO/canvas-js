@@ -39,41 +39,41 @@ function generateMap(){
 function generateChunks(){
     let chunksCount = CHUNKS_BASE_COUNT + (progressLevel*2);
     let loadedChunks = [];
-    let availableChunks = []; // generate the map
-
     loadedChunks.push(new Chunk(0, 0)); 
+
     do{
-        for(let lC=0; lC<loadedChunks.length;lC++){
-            for(let i=-1;i<=1;i++){
-                for(let j=-1;j<=1; j++){
-                    newCords = new Chunk(loadedChunks[lC].x+i , loadedChunks[lC].y+j);
-                    
-                    let isSame = false;
-                    if(!loadedChunks.length === 1){
-                        for(let aC=0; aC<loadedChunks.length;aC++){
-                            isSame = isSameChunk(availableChunks[aC], loadedChunks[lC]);
-                            if(isSame)
-                                break;
-                        }
-                    }
-                    if(!isSame)
-                        availableChunks.push(newCords);
-                }
+        let x = 0; let y = 0;
+        let isSame = false;
+        direction = Math.floor(Math.random()*4)+1;
+        continuingChunk = Math.floor(Math.random()*loadedChunks.length);
+        if(direction == 1){
+            x = 0;
+            y = 1;
+        }else if(direction == 2){
+            x = 1;
+            y = 0;
+        }else if(direction == 3){
+            x = -1;
+            y = 0;
+        }else if(direction == 4){
+            x = 0;
+            y = -1;
+        }
+        x += loadedChunks[continuingChunk].x;
+        y += loadedChunks[continuingChunk].y;
+        newChunk = new Chunk(x, y);
+        for(let i=0;i<loadedChunks.length;i++){
+            if(loadedChunks[i].x == newChunk.x && loadedChunks[i].y == newChunk.y){
+                isSame = true;
             }
         }
-        chosenChunk = Math.floor(Math.random()*availableChunks.length);
-        loadedChunks.push(availableChunks[chosenChunk]);
-        availableChunks.splice(chosenChunk, 1);
-        
-        console.log(loadedChunks.length);
+        if(!isSame){
+            loadedChunks.push(newChunk);
+        }
     }while(loadedChunks.length <= chunksCount);
+    console.log(loadedChunks);
 }
 
-function isSameChunk(a, b){
-    if(a.x === b.x && a.y === b.y)
-        return true;
-    return false;
-}
 /*
 function generateMap(){
     for(i=0;i<MAP_HEIGHT;i++){
