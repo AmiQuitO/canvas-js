@@ -31,7 +31,7 @@ function generateMap(){
         sy += Math.round((MAP_HEIGHT / 2) - (CHUNKS_SIZE / 2))
 
         for (let i = 0; i < CHUNKS_SIZE; i++) {   
-            mapTiles[sx + i][sy]    = new Tile("wall","#333",2);  
+            mapTiles[sx + i][sy] = new Tile("wall","#333",2);       
             mapTiles[sx]   [sy + i] = new Tile("wall","#333",2);  
             mapTiles[sx + i][sy + CHUNKS_SIZE - 1] = new Tile("wall","#333",2);  
             mapTiles[sx + CHUNKS_SIZE - 1][sy + i] = new Tile("wall","#333",2);              

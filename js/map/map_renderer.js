@@ -1,4 +1,7 @@
 function drawMap(){
+    C.translate(0,Player.currentHeight * BASE_SCALE)
+
+
     let baseX = (CANVAS_WIDTH/2) + (((Player.x*BASE_SCALE)*2) - ((Player.y*BASE_SCALE)*2));
     let baseY = (CANVAS_HEIGHT/2) - BASE_SCALE + (Player.x*BASE_SCALE) + (Player.y*BASE_SCALE);
 

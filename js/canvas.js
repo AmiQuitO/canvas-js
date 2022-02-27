@@ -10,6 +10,7 @@ const C = CTX.getContext("2d");
 function beginCanvas(){
     clearCanvas();
     drawMap(); // map_renderer.js
+    C.resetTransform()
     drawPos();
 }
 function clearCanvas(){
