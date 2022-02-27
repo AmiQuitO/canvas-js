@@ -1,7 +1,7 @@
-const MAP_WIDTH = 336;
-const MAP_HEIGHT = 336;
+const MAP_WIDTH = 315;
+const MAP_HEIGHT = 315;
 const CHUNKS_BASE_COUNT = 8;
-const CHUNKS_SIZE = 16;
+const CHUNKS_SIZE = 15;
 const TILE_COLOR = ["#c1f376", "#a1df50", "#79d021", "#5fc314", "#55c233", "#37ae0f" ];
 // color for background on dungeons? #e4dcb7
 
@@ -14,12 +14,11 @@ let progressLevel = 1;
 function generateMap(){
     generateChunks();
     for(i=0;i<MAP_HEIGHT;i++){
-        if(i%16==0)updateLoadingBar(i); // not work
         for(j=0;j<MAP_WIDTH;j++){
             let pickedColor = Math.floor(Math.random()*(TILE_COLOR.length-1));
             let collisionrandom = Math.floor(Math.random()*8); // tests
             let collisionsmaybe = false;
-            if(collisionrandom < 3 && (i%16 == 0 || j%16 == 0)){
+            if(collisionrandom < 3 && (i%CHUNKS_SIZE == 0 || j%CHUNKS_SIZE == 0)){
                 collisionsmaybe = true;           
                 spritee = "./img/tileFloor.png";
                 spriteee = "./img/tileWall.png";
