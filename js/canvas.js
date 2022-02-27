@@ -20,20 +20,3 @@ function drawPos(){
     C.fillStyle = "#ffffff";
     C.fillText(`${Player.y}, ${Player.x}`, 0, 40);
 }
-function updateLoadingBar(progress){
-    let progressSquareSize = 40;
-    let baseX = (CANVAS_WIDTH/2)-50;
-    let baseY = (CANVAS_HEIGHT/2)-progressSquareSize;
-    C.beginPath();
-    if(progress == 16){ 
-        C.moveTo(baseX, baseY);   
-    }else{
-        C.moveTo(baseX+(progress*2), baseY);
-    }
-    C.lineTo(baseX+(progress*2)+progressSquareSize, baseY);
-    C.lineTo(baseX+(progress*2)+progressSquareSize, baseY+progressSquareSize);
-    C.lineTo(baseX+(progress*2), baseY+progressSquareSize);
-    C.fillStyle = "white";
-    C.fill();
-    console.log("loaded");
-}

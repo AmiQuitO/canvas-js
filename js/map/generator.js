@@ -14,7 +14,6 @@ let progressLevel = 1;
 function generateMap(){
     generateChunks();
     for(i=0;i<MAP_HEIGHT;i++){
-        if(i%16==0)updateLoadingBar(i); // not work
         for(j=0;j<MAP_WIDTH;j++){
             let pickedColor = Math.floor(Math.random()*(TILE_COLOR.length-1));
             if(mapTiles[i] == undefined)
