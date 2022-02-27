@@ -9,10 +9,25 @@ class Tile{
         this.spriteWall = document.querySelector("#wall");
         //sprite = type + ".png";
     }
-    drawTile(posX, posY, scale){
+    drawTile(posX, posY, gridX,gridY,scale){
+        let height = 0;        
+        C.fillStyle = this.color;
         scale = scale + BASE_SCALE;
-        let height = 0;
         height = scale * this.height;
+
+        // Don't obscure the player
+        // if ((this.height - 1 > Player.currentHeight) && 
+        //     (mapTiles[gridY-Math.floor(this.height / 2)][gridX-Math.floor(this.height / 2)].height < this.height) &&
+        //     (Math.sqrt((gridX-Player.x) * (gridX-Player.x) + (gridY-Player.y) * (gridY-Player.y)) < radius)
+        //     ) 
+        //
+        let radius = 1;
+        if ((this.height - 1 > Player.currentHeight) && 
+            (this.height / 1.5 * radius > gridY - Player.y) && (gridY >= Player.y) &&
+            (this.height * radius > gridX - Player.x) && (gridX >= Player.x)) {        
+            height = (Player.currentHeight + 1) * scale          
+            C.fillStyle = "black";
+        }
 
         
         C.beginPath();
@@ -23,7 +38,6 @@ class Tile{
         C.lineTo(posX-(scale*2), posY+scale);           //right
         C.lineTo(posX-(scale*2), posY+scale-height);    //right top
         C.lineTo(posX, posY-height);                    //top
-        C.fillStyle = this.color;
         C.fill();
         C.stroke();
         

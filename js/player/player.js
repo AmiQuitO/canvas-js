@@ -9,5 +9,5 @@ class Controller{
         this.sprite = new Image();
     }
 };
-let Player = new Controller(-157 , -157);
+var Player = new Controller(157 , 157);
 Player.sprite.src = "./img/PlayerSprite.png";
