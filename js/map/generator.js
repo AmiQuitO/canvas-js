@@ -1,7 +1,7 @@
-const MAP_WIDTH = 336;
-const MAP_HEIGHT = 336;
+const MAP_WIDTH = 315;
+const MAP_HEIGHT = 315;
 const CHUNKS_BASE_COUNT = 8;
-const CHUNKS_SIZE = 16;
+const CHUNKS_SIZE = 15;
 const TILE_COLOR = ["#c1f376", "#a1df50", "#79d021", "#5fc314", "#55c233", "#37ae0f" ];
 // color for background on dungeons? #e4dcb7
 
@@ -17,23 +17,39 @@ function generateMap(){
         if(i%16==0)updateLoadingBar(i); // not work
         for(j=0;j<MAP_WIDTH;j++){
             let pickedColor = Math.floor(Math.random()*(TILE_COLOR.length-1));
-            let collisionrandom = Math.floor(Math.random()*8); // tests
-            let collisionsmaybe = false;
-            if(collisionrandom < 3 && (i%16 == 0 || j%16 == 0)){
-                collisionsmaybe = true;           
-                spritee = "./img/tileFloor.png";
-                spriteee = "./img/tileWall.png";
-            }
             if(mapTiles[i] == undefined)
                 mapTiles[i] = [];
-                mapTiles[i][j] = new Tile("some type", TILE_COLOR[pickedColor], collisionsmaybe);
-            if(collisionsmaybe){
-                mapTiles[i][j].spriteFloor.src = spritee;
-                mapTiles[i][j].spriteWall.src = spriteee;
-            }
+            mapTiles[i][j] = new Tile("some type", TILE_COLOR[pickedColor],0);
         }
     }
-    console.log(mapTiles);
+
+    for(let chunk of mapChunks)
+    {
+        let sx = chunk.x * CHUNKS_SIZE
+        let sy = chunk.y * CHUNKS_SIZE
+
+        sx += Math.round((MAP_WIDTH  / 2) - (CHUNKS_SIZE / 2))
+        sy += Math.round((MAP_HEIGHT / 2) - (CHUNKS_SIZE / 2))
+
+        for (let i = 0; i < CHUNKS_SIZE; i++) {   
+            mapTiles[sx + i][sy]    = new Tile("wall","#333",2);  
+            mapTiles[sx]   [sy + i] = new Tile("wall","#333",2);  
+            mapTiles[sx + i][sy + CHUNKS_SIZE - 1] = new Tile("wall","#333",2);  
+            mapTiles[sx + CHUNKS_SIZE - 1][sy + i] = new Tile("wall","#333",2);              
+        }
+
+        for (let i = 1; i < CHUNKS_SIZE - 1; i++) {   
+            for (let j = 1; j < CHUNKS_SIZE - 1; j++) { 
+                mapTiles[sx + i][sy + j] = new Tile("floor","#544",0); ;        
+            }
+        }
+        mapTiles[sx][sy + Math.floor(CHUNKS_SIZE / 2)] = new Tile("floor","#544",0); 
+        mapTiles[sx + Math.floor(CHUNKS_SIZE / 2)][sy] = new Tile("floor","#544",0); 
+        mapTiles[sx + CHUNKS_SIZE - 1][sy + Math.floor(CHUNKS_SIZE / 2)] = new Tile("floor","#544",0); 
+        mapTiles[sx + Math.floor(CHUNKS_SIZE / 2)][sy + CHUNKS_SIZE - 1] = new Tile("floor","#544",0); 
+
+        mapTiles[sx + 1][sy + 1].height = 1;  
+    }
 }
 
 function generateChunks(){
@@ -72,6 +88,7 @@ function generateChunks(){
         }
     }while(loadedChunks.length <= chunksCount);
     console.log(loadedChunks);
+    mapChunks = loadedChunks;
 }
 
 /*

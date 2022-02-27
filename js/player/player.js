@@ -5,8 +5,9 @@ class Controller{
     constructor(y, x){
         this.y = y;
         this.x = x;
+        this.currentHeight = 0;
         this.sprite = new Image();
     }
 };
-let Player = new Controller(-49 , -49);
+let Player = new Controller(-157 , -157);
 Player.sprite.src = "./img/PlayerSprite.png";
