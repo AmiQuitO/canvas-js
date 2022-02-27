@@ -19,7 +19,7 @@ function generateMap(){
             let pickedColor = Math.floor(Math.random()*(TILE_COLOR.length-1));
             let collisionrandom = Math.floor(Math.random()*8); // tests
             let collisionsmaybe = false;
-            if(collisionrandom == 1){
+            if(collisionrandom < 3 && (i%16 == 0 || j%16 == 0)){
                 collisionsmaybe = true;           
                 spritee = "./img/tileFloor.png";
                 spriteee = "./img/tileWall.png";
@@ -27,7 +27,7 @@ function generateMap(){
             if(mapTiles[i] == undefined)
                 mapTiles[i] = [];
                 mapTiles[i][j] = new Tile("some type", TILE_COLOR[pickedColor], collisionsmaybe);
-            if(collisionrandom == 1){
+            if(collisionsmaybe){
                 mapTiles[i][j].spriteFloor.src = spritee;
                 mapTiles[i][j].spriteWall.src = spriteee;
             }
