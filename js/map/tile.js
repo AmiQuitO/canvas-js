@@ -1,12 +1,19 @@
 class Tile{
-    constructor(type, color, height){
+    constructor(type, color, height, prop){
         this.type = type;
         // future types: exit of the stage | get up / get down one level | destructibles wood minerals? | 
+        // add!!! stairs | passing to another level | doors
+
         this.color = color;
         this.height = height;
 
+        this.prop = prop;
+        if(!this.prop == undefined)
+            setTilePropSprite();
+        
         this.spriteFloor = document.querySelector("#floor");
         this.spriteWall = document.querySelector("#wall");
+        this.spriteProp = document.querySelector(`#${this.prop}`);
         //sprite = type + ".png";
     }
     drawTile(posX, posY, gridX,gridY,scale){

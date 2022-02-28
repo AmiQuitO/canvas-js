@@ -5,6 +5,8 @@ function isColliding(y, x){
         y = (Player.y + y);
         x = (Player.x + x);
 
+        isChestCollision(x, y);
+
         let diff = Math.max(Player.currentHeight - mapTiles[y][x].height,mapTiles[y][x].height - Player.currentHeight)
 
         if (diff < 2) {
@@ -17,5 +19,12 @@ function isColliding(y, x){
             //Player.currentHeight = mapTiles[y][x].height //falling (also add > instead of != above)
             return false;
         }
+    }
+}
+
+function isChestCollision(x, y){
+    if(mapTiles[y][x].prop == "chest"){
+        mapTiles[y][x].prop = undefined;
+        Player.gold += Math.floor(Math.random()*9)+2;
     }
 }

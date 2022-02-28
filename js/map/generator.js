@@ -1,16 +1,3 @@
-const MAP_WIDTH = 315;
-const MAP_HEIGHT = 315;
-const CHUNKS_BASE_COUNT = 8;
-const CHUNKS_SIZE = 15;
-const TILE_COLOR = ["#c1f376", "#a1df50", "#79d021", "#5fc314", "#55c233", "#37ae0f" ];
-// color for background on dungeons? #e4dcb7
-
-let mapTiles = [];
-
-let mapChunks = [];
-let progressLevel = 1;
-
-
 function generateMap(){
     generateChunks();
     for(i=0;i<MAP_HEIGHT;i++){
@@ -22,14 +9,18 @@ function generateMap(){
         }
     }
 
+
+    // render the dungeon over the map
+
     for(let chunk of mapChunks)
     {
-        let sx = chunk.x * CHUNKS_SIZE
-        let sy = chunk.y * CHUNKS_SIZE
+        let sx = chunk.x * CHUNKS_SIZE;
+        let sy = chunk.y * CHUNKS_SIZE;
 
-        sx += Math.round((MAP_WIDTH  / 2) - (CHUNKS_SIZE / 2))
-        sy += Math.round((MAP_HEIGHT / 2) - (CHUNKS_SIZE / 2))
+        sx += Math.round((MAP_WIDTH  / 2) - (CHUNKS_SIZE / 2));
+        sy += Math.round((MAP_HEIGHT / 2) - (CHUNKS_SIZE / 2));
 
+        //
         for (let i = 0; i < CHUNKS_SIZE; i++) {   
             mapTiles[sx + i][sy] = new Tile("wall","#333",2);       
             mapTiles[sx]   [sy + i] = new Tile("wall","#333",2);  
@@ -37,9 +28,20 @@ function generateMap(){
             mapTiles[sx + CHUNKS_SIZE - 1][sy + i] = new Tile("wall","#333",2);              
         }
 
+        let chestPosX = Math.floor(Math.random()*CHUNKS_SIZE)-1;
+        let chestPosY = Math.floor(Math.random()*CHUNKS_SIZE)-1;
+
+        let chestGenerationChance = Math.floor(Math.random()*5);
         for (let i = 1; i < CHUNKS_SIZE - 1; i++) {   
-            for (let j = 1; j < CHUNKS_SIZE - 1; j++) { 
-                mapTiles[sx + i][sy + j] = new Tile("floor","#544",0); ;        
+            for (let j = 1; j < CHUNKS_SIZE - 1; j++) {
+                
+                if(chestPosX == j && chestPosY == i && chestGenerationChance == 1){
+                    mapTiles[sx + i][sy + j] = new Tile("floor","#544",0 , "chest"); // chest generator 
+                    console.log((sx + i), (sy + j)); 
+                    continue;
+                }
+
+                mapTiles[sx + i][sy + j] = new Tile("floor","#544",0);      
             }
         }
         mapTiles[sx][sy + Math.floor(CHUNKS_SIZE / 2)] = new Tile("floor","#544",0); 
@@ -49,6 +51,7 @@ function generateMap(){
 
         mapTiles[sx + 1][sy + 1].height = 1;  
     }
+    console.log(mapTiles);
 }
 
 function generateChunks(){
