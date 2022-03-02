@@ -16,9 +16,9 @@ class Tile{
         this.spriteProp = document.querySelector(`#${this.prop}`);
         //sprite = type + ".png";
     }
-    drawTile(posX, posY, gridX,gridY,scale){
+    drawTile(posX, posY, gridX,gridY,scale,ctx){
         let height = 0;        
-        C.fillStyle = this.color;
+        ctx.fillStyle = this.color;
         scale = scale + BASE_SCALE;
         height = scale * this.height;
 
@@ -33,28 +33,28 @@ class Tile{
             (this.height / 1.5 * radius > gridY - Player.y) && (gridY >= Player.y) &&
             (this.height * radius > gridX - Player.x) && (gridX >= Player.x)) {        
             height = (Player.currentHeight + 1) * scale          
-            C.fillStyle = "black";
+            ctx.fillStyle = "black";
         }
 
         
-        C.beginPath();
-        C.moveTo(posX, posY-height);                    //top
-        C.lineTo(posX+(scale*2), posY+scale-height);    //left top
-        C.lineTo(posX+(scale*2), posY+scale);           //left
-        C.lineTo(posX, posY+(scale*2));                 //bottom
-        C.lineTo(posX-(scale*2), posY+scale);           //right
-        C.lineTo(posX-(scale*2), posY+scale-height);    //right top
-        C.lineTo(posX, posY-height);                    //top
-        C.fill();
-        C.stroke();
+        ctx.beginPath();
+        ctx.moveTo(posX, posY-height);                    //top
+        ctx.lineTo(posX+(scale*2), posY+scale-height);    //left top
+        ctx.lineTo(posX+(scale*2), posY+scale);           //left
+        ctx.lineTo(posX, posY+(scale*2));                 //bottom
+        ctx.lineTo(posX-(scale*2), posY+scale);           //right
+        ctx.lineTo(posX-(scale*2), posY+scale-height);    //right top
+        ctx.lineTo(posX, posY-height);                    //top
+        ctx.fill();
+        ctx.stroke();
         
         for (let h = 0; h < height; h+=scale) {
-            C.drawImage(this.spriteWall,   posX-(BASE_SCALE*2), posY-h,              BASE_SCALE*4,BASE_SCALE*2); //sciana
+            ctx.drawImage(this.spriteWall,   posX-(BASE_SCALE*2), posY-h,              BASE_SCALE*4,BASE_SCALE*2); //sciana
             if (h == height - scale) {
-                //C.drawImage(this.spriteFloor,    posX-(BASE_SCALE*2), posY-BASE_SCALE-h,   BASE_SCALE*4,BASE_SCALE*2); //podloga
+                //ctx.drawImage(this.spriteFloor,    posX-(BASE_SCALE*2), posY-BASE_SCALE-h,   BASE_SCALE*4,BASE_SCALE*2); //podloga
             }      
         }
-        //C.drawImage(this.spriteWall, posX-(BASE_SCALE*2), posY, BASE_SCALE*4,BASE_SCALE*2);            
+        //ctx.drawImage(this.spriteWall, posX-(BASE_SCALE*2), posY, BASE_SCALE*4,BASE_SCALE*2);            
     
     }
     

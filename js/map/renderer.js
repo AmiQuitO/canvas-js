@@ -1,5 +1,5 @@
 function drawMap(){
-    C.translate(0,Player.currentHeight * BASE_SCALE)
+    MAP_CTX.translate(0,Player.currentHeight * BASE_SCALE)
 
     let baseX = (CANVAS_WIDTH/2) + (((-Player.x*BASE_SCALE)*2) - ((-Player.y*BASE_SCALE)*2));
     let baseY = (CANVAS_HEIGHT/2) - BASE_SCALE + (-Player.x*BASE_SCALE) + (-Player.y*BASE_SCALE);
@@ -11,13 +11,13 @@ function drawMap(){
             if(i < 0 || i > MAP_HEIGHT-1 || j < 0 || j > MAP_WIDTH-1){
                 continue;
             }
-            mapTiles[i][j].drawTile(x, y,j,i, 0); // drawing the tile
+            mapTiles[i][j].drawTile(x, y,j,i, 0, MAP_CTX); // drawing the tile
             if(mapTiles[i][j].prop == "chest"){
-                C.drawImage(mapTiles[i][j].spriteProp, x-(SPRITE_SIZE/2), y-(SPRITE_SIZE/2));
+                MAP_CTX.drawImage(mapTiles[i][j].spriteProp, x-(SPRITE_SIZE/2), y-(SPRITE_SIZE/2));
             }
             
             if(i==Player.y && j==Player.x){ // drawing the player
-                C.drawImage(Player.sprite, (CANVAS_WIDTH/2)-(SPRITE_SIZE/2), (CANVAS_HEIGHT/2)-(SPRITE_SIZE) - (Player.currentHeight * BASE_SCALE));
+                MAP_CTX.drawImage(Player.sprite, (CANVAS_WIDTH/2)-(SPRITE_SIZE/2), (CANVAS_HEIGHT/2)-(SPRITE_SIZE) - (Player.currentHeight * BASE_SCALE));
             }
         }
     }

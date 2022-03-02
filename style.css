@@ -16,3 +16,8 @@ body{
 canvas{
     border: 1px solid black;
 }
+
+#canvas-holder canvas{
+    position: absolute;
+    left:calc(50% - 400px);
+}

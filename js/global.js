@@ -5,8 +5,10 @@ const CHUNKS_SIZE = 15;
 const TILE_COLOR = ["#c1f376", "#a1df50", "#79d021", "#5fc314", "#55c233", "#37ae0f" ];
 // color for background on dungeons? #e4dcb7
 
+/** @type {Tile[][]} */
 let mapTiles = [];
 
+/** @type {Chunk[]} */
 let mapChunks = [];
 let progressLevel = 1;
 
