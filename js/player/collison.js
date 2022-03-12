@@ -1,16 +1,20 @@
 function isColliding(y, x){
     if(Player.x + x < 0 || Player.y + y < 0  || Player.x + x >=MAP_WIDTH || Player.y + y >=MAP_HEIGHT){ // leaving the map
         return true;
-    }else{ // objects collision
+    }else{
         y = (Player.y + y);
         x = (Player.x + x);
 
-        isChestCollision(x, y);
-
         let diff = Math.max(Player.currentHeight - mapTiles[y][x].height,mapTiles[y][x].height - Player.currentHeight)
 
+
+        // can interact with things on the same height
         if (diff < 2) {
-            Player.currentHeight = mapTiles[y][x].height
+            if (isPropCollision(x, y)){
+                beginCanvas();
+                return true;
+            }
+            Player.currentHeight = mapTiles[y][x].height 
         }
 
         if(mapTiles[y][x].height != Player.currentHeight){
@@ -22,9 +26,14 @@ function isColliding(y, x){
     }
 }
 
-function isChestCollision(x, y){
+function isPropCollision(x, y){
     if(mapTiles[y][x].prop == "chest"){
         mapTiles[y][x].prop = undefined;
         Player.gold += Math.floor(Math.random()*9)+2;
+        return false;
+    }
+    if(mapTiles[y][x].prop == "npc"){
+        
+        return true;
     }
 }

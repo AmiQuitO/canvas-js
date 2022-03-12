@@ -8,14 +8,11 @@ class Tile{
         this.height = height;
 
         this.prop = prop;
-        if(!this.prop == undefined)
-            setTilePropSprite();
-        
-        this.spriteFloor = document.querySelector("#floor");
-        this.spriteWall = document.querySelector("#wall");
         this.spriteProp = document.querySelector(`#${this.prop}`);
         //sprite = type + ".png";
     }
+    static spriteFloor = document.querySelector("#floor");
+    static spriteWall = document.querySelector("#wall");
     drawTile(posX, posY, gridX,gridY,scale,ctx){
         let height = 0;        
         ctx.fillStyle = this.color;
@@ -33,7 +30,7 @@ class Tile{
             (this.height / 1.5 * radius > gridY - Player.y) && (gridY >= Player.y) &&
             (this.height * radius > gridX - Player.x) && (gridX >= Player.x)) {        
             height = (Player.currentHeight + 1) * scale          
-            ctx.fillStyle = "black";
+            ctx.fillStyle = "#111111";
         }
 
         
@@ -49,7 +46,7 @@ class Tile{
         ctx.stroke();
         
         for (let h = 0; h < height; h+=scale) {
-            ctx.drawImage(this.spriteWall,   posX-(BASE_SCALE*2), posY-h,              BASE_SCALE*4,BASE_SCALE*2); //sciana
+            ctx.drawImage(Tile.spriteWall,   posX-(BASE_SCALE*2), posY-h,              BASE_SCALE*4,BASE_SCALE*2); //sciana
             if (h == height - scale) {
                 //ctx.drawImage(this.spriteFloor,    posX-(BASE_SCALE*2), posY-BASE_SCALE-h,   BASE_SCALE*4,BASE_SCALE*2); //podloga
             }      

@@ -23,6 +23,12 @@ const MAIN_CTX = MAIN_CANVAS.getContext("2d");
 const MAP_CTX = MAP_CANVAS.getContext("2d");
 const UI_CTX = UI_CANVAS.getContext("2d");
 
+// optimization
+MAIN_CTX.imageSmoothingEnabled = false;
+MAIN_CTX.mozImageSmoothingEnabled = false;
+MAIN_CTX.webkitImageSmoothingEnabled = false;
+MAIN_CTX.msImageSmoothingEnabled = false;
+
 function beginCanvas(){
     clearCanvas(MAP_CTX);
     clearCanvas(MAIN_CTX);
