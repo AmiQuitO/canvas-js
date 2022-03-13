@@ -3,4 +3,5 @@ class Chunk{
         this.x = x;
         this.y = y;
     }
+    doorsPlacement = [];
 }

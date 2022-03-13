@@ -46,7 +46,7 @@ function clearCanvas(ctx){
 function drawPos(){
     UI_CTX.font = '48px monospace';
     UI_CTX.fillStyle = "#ffffff";
-    UI_CTX.fillText(`${Player.y}, ${Player.x}`, 0, 40);
+    UI_CTX.fillText(`${Player.x}, ${Player.y}`, 0, 40);
 }
 function drawGoldCount(){
     UI_CTX.font = '40px monospace';

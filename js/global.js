@@ -14,8 +14,8 @@ let progressLevel = 1;
 
 const CANVAS_HEIGHT = 450;
 const CANVAS_WIDTH = 800;
-const BASE_SCALE = 20; // normally 20 // in the final game 30/35?
+const BASE_SCALE = 15; // normally 20 // in the final game 30/35?
 
 const SPRITE_SIZE = 32; // better not change
 const MOVEMENT_SPEED = 1; // normally 1
-let FOV = 7; // normally 20
+let FOV = 15; // normally 20 // final 7?
