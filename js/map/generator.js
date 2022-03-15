@@ -64,6 +64,25 @@ function generateMap(){
                 mapTiles[sy + CHUNKS_SIZE - 1][sx + Math.floor(CHUNKS_SIZE / 2)] = new Tile("floor","#544",0);
             }
         }
+
+       // for debug
+       /*
+        for(i=0;i<chunk.doorsPlacement.length;i++){
+            if(chunk.doorsPlacement[i] == 4){
+                mapTiles[sy + Math.floor(CHUNKS_SIZE / 2)][sx] = new Tile("floor","red",3);
+            }
+            if(chunk.doorsPlacement[i] == 1){
+                mapTiles[sy][sx + Math.floor(CHUNKS_SIZE / 2)] = new Tile("floor","red",3);
+            }
+            if(chunk.doorsPlacement[i] == 2){
+                mapTiles[sy + Math.floor(CHUNKS_SIZE / 2)][sx + CHUNKS_SIZE - 1] = new Tile("floor","red",3); 
+            }
+            if(chunk.doorsPlacement[i] == 3){
+                mapTiles[sy + CHUNKS_SIZE - 1][sx + Math.floor(CHUNKS_SIZE / 2)] = new Tile("floor","red",3);
+            }
+        }
+        */
+
         /*
         mapTiles[sx][sy + Math.floor(CHUNKS_SIZE / 2)] = new Tile("floor","#544",0); // right top
         
@@ -84,10 +103,13 @@ function generateMap(){
     console.log(mapChunks);
 }
 
+
 function generateChunks(){
     let chunksCount = CHUNKS_BASE_COUNT + (progressLevel*2);
+    chunksCount = Math.min(chunksCount, (MAP_HEIGHT/CHUNKS_SIZE) * (MAP_HEIGHT/CHUNKS_SIZE)-1);
     let loadedChunks = [];
-    loadedChunks.push(new Chunk(0, 0)); 
+    loadedChunks.push(new Chunk(0, 0));
+    overTheMapVariable = Math.floor(MAP_HEIGHT/CHUNKS_SIZE)/2;
 
     do{
         let x = 0; let y = 0;
@@ -109,6 +131,8 @@ function generateChunks(){
         }
         x += loadedChunks[continuingChunk].x;
         y += loadedChunks[continuingChunk].y;
+        if(x >= overTheMapVariable || x <= -overTheMapVariable || y >= overTheMapVariable || y <= -overTheMapVariable)
+            continue;
         newChunk = new Chunk(x, y);
         for(let i=0;i<loadedChunks.length;i++){
             if(loadedChunks[i].x == newChunk.x && loadedChunks[i].y == newChunk.y){
@@ -121,9 +145,11 @@ function generateChunks(){
     }while(loadedChunks.length <= chunksCount);
     mapChunks = loadedChunks;
 }
+
+
 function generateDoors(){
     for(i=0;i<mapChunks.length;i++){
-        doorCount = 1;//Math.floor(Math.random()*2)+1;
+        doorCount = Math.floor(Math.random()*2)+1;
         for(j=0;j<mapChunks.length;j++){
             if(mapChunks[i].doorsPlacement.length >= doorCount){
                 break;
@@ -131,25 +157,20 @@ function generateDoors(){
             if(mapChunks[i].x == mapChunks[j].x && mapChunks[i].y == (mapChunks[j].y + 1)){
                 mapChunks[i].doorsPlacement.push(1);
                 mapChunks[j].doorsPlacement.push(3);
-                console.log(mapChunks[j]);
             }
             else if(mapChunks[i].x == (mapChunks[j].x + 1) && mapChunks[i].y == mapChunks[j].y){
                 mapChunks[i].doorsPlacement.push(4);
                 mapChunks[j].doorsPlacement.push(2);
-                console.log(mapChunks[j]);
             }
             else if(mapChunks[i].x == mapChunks[j].x && mapChunks[i].y == (mapChunks[j].y - 1)){
                 mapChunks[i].doorsPlacement.push(3);
                 mapChunks[j].doorsPlacement.push(1);
-                console.log(mapChunks[j]);
             }
             else if(mapChunks[i].x == (mapChunks[j].x - 1) && mapChunks[i].y == mapChunks[j].y){
                 mapChunks[i].doorsPlacement.push(2);
                 mapChunks[j].doorsPlacement.push(4);
-                console.log(mapChunks[j]);
             }
         }
-        console.log(mapChunks[i].doorsPlacement);
     }
 }
 

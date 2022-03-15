@@ -7,7 +7,7 @@ class Controller{
         this.sprite = new Image();
     }
 };
-var Player = new Controller(82 , 82);
+var Player = new Controller(Math.floor(MAP_HEIGHT/2) , Math.floor(MAP_WIDTH/2));
 Player.sprite.src = "./img/PlayerSprite.png";
 
 
