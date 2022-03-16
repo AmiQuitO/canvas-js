@@ -1,7 +1,7 @@
-const MAP_WIDTH = 357;
-const MAP_HEIGHT = 357;
-const CHUNKS_BASE_COUNT = 8; // normally 8
-const CHUNKS_SIZE = 17;
+const CHUNKS_SIZE = 23;
+const MAP_WIDTH = CHUNKS_SIZE*21;
+const MAP_HEIGHT = MAP_WIDTH;
+const CHUNKS_BASE_COUNT = 2; // normally 8
 const TILE_COLOR = ["#c1f376", "#a1df50", "#79d021", "#5fc314", "#55c233", "#37ae0f" ];
 // color for background on dungeons? #e4dcb7
 
