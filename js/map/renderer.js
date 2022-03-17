@@ -8,16 +8,23 @@ function drawMap(){
         for(let j=(Player.x)-FOV;j<=(Player.x)+FOV;j++){
             x = baseX + ((j*BASE_SCALE)*2 - (i*BASE_SCALE)*2);
             y = baseY + (j*BASE_SCALE)+(i*BASE_SCALE);
+
+            // drawing nothing if its outside of the map
             if(i < 0 || i > MAP_HEIGHT-1 || j < 0 || j > MAP_WIDTH-1){
                 continue;
             }
-            mapTiles[i][j].drawTile(x, y,j,i, 0, MAP_CTX); // drawing the tile
-            if(mapTiles[i][j].prop == "chest"){
-                MAP_CTX.drawImage(mapTiles[i][j].spriteProp, x-(SPRITE_SIZE/2), y-(SPRITE_SIZE/2));
+
+            // drawing tiles
+            mapTiles[i][j].drawTile(x, y,j,i, 0, MAP_CTX);
+
+            // drawing props
+            if(mapTiles[i][j].prop != "none"){
+                MAP_CTX.drawImage(mapTiles[i][j].spriteProp, x-(BASE_SCALE*4), y-(BASE_SCALE*4) + BASE_SCALE - (BASE_SCALE*mapTiles[i][j].height), BASE_SCALE*8, BASE_SCALE*8);
             }
             
-            if(i==Player.y && j==Player.x){ // drawing the player
-                MAP_CTX.drawImage(Player.sprite, (CANVAS_WIDTH/2)-(SPRITE_SIZE/2), (CANVAS_HEIGHT/2)-(SPRITE_SIZE) - (Player.currentHeight * BASE_SCALE));
+            // drawing the player
+            if(i==Player.y && j==Player.x){
+                MAP_CTX.drawImage(Player.sprite, (CANVAS_WIDTH/2)-(BASE_SCALE*4), (CANVAS_HEIGHT/2)-(BASE_SCALE*4) - (Player.currentHeight * BASE_SCALE), BASE_SCALE*8, BASE_SCALE*8);
             }
         }
     }

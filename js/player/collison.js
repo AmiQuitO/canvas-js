@@ -28,7 +28,7 @@ function isColliding(y, x){
 
 function isPropCollision(x, y){
     if(mapTiles[y][x].prop == "chest"){
-        mapTiles[y][x].prop = undefined;
+        mapTiles[y][x].prop = "none";
         Player.gold += Math.floor(Math.random()*9)+2;
         return false;
     }

@@ -33,7 +33,7 @@ function beginCanvas(){
     clearCanvas(MAP_CTX);
     clearCanvas(MAIN_CTX);
     clearCanvas(UI_CTX);
-    drawMap(); // map_renderer.js
+    drawMap(); // map/renderer.js
     drawPos();
     drawGoldCount();
 }

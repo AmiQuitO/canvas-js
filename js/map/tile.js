@@ -6,10 +6,23 @@ class Tile{
 
         this.color = color;
         this.height = height;
-
+        
         this.prop = prop;
-        this.spriteProp = document.querySelector(`#${this.prop}`);
+        if(prop == "none"){
+            this.spriteProp = "none";
+        }else{ 
+            this.spriteProp = document.querySelector(`#${this.prop}`);
+        }
+        
         //sprite = type + ".png";
+    }
+    setProp(prop){
+        this.prop = prop;
+        if(prop == "none"){
+            this.spriteProp = "none";
+        }else{ 
+            this.spriteProp = document.querySelector(`#${this.prop}`);
+        }
     }
     static spriteFloor = document.querySelector("#floor");
     static spriteWall = document.querySelector("#wall");
@@ -46,7 +59,7 @@ class Tile{
         ctx.stroke();
         
         for (let h = 0; h < height; h+=scale) {
-            ctx.drawImage(Tile.spriteWall,   posX-(BASE_SCALE*2), posY-h,              BASE_SCALE*4,BASE_SCALE*2); //sciana
+            ctx.drawImage(Tile.spriteWall, posX-(BASE_SCALE*2), posY-h, BASE_SCALE*4,BASE_SCALE*2); //sciana
             if (h == height - scale) {
                 //ctx.drawImage(this.spriteFloor,    posX-(BASE_SCALE*2), posY-BASE_SCALE-h,   BASE_SCALE*4,BASE_SCALE*2); //podloga
             }      
