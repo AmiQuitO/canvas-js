@@ -1,5 +1,5 @@
 class Tile{
-    constructor(type, color, height, prop){
+    constructor(type, color, height, prop = "none"){
         this.type = type;
         // future types: exit of the stage | get up / get down one level | destructibles wood minerals? | 
         // add!!! stairs | passing to another level | doors
@@ -7,13 +7,7 @@ class Tile{
         this.color = color;
         this.height = height;
         
-        this.prop = prop;
-        if(prop == "none"){
-            this.spriteProp = "none";
-        }else{ 
-            this.spriteProp = document.querySelector(`#${this.prop}`);
-        }
-        
+        this.setProp(prop);
         //sprite = type + ".png";
     }
     setProp(prop){
@@ -76,6 +70,23 @@ class Tile{
         }
         //ctx.drawImage(this.spriteWall, posX-(BASE_SCALE*2), posY, BASE_SCALE*4,BASE_SCALE*2);            
     
+        this.drawProp(posX, posY, ctx);
+    }
+
+    drawProp(posX, posY, ctx)
+    {
+        if (this.prop == "none" || this.spriteProp == undefined) 
+            return
+
+        let scale = this.spriteProp.getAttribute("scale");
+
+        ctx.drawImage(
+            this.spriteProp, 
+            posX-(BASE_SCALE*scale), posY-(BASE_SCALE*scale) + BASE_SCALE - (BASE_SCALE*this.height),
+            BASE_SCALE*scale*2, BASE_SCALE*scale*2
+        );
     }
     
+    static spriteFloor = document.querySelector("#floor");
+    static spriteWall = document.querySelector("#wall");
 }
