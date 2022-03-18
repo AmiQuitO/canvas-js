@@ -24,7 +24,7 @@ window.addEventListener("keydown", function (event) {
 function buttonsMove(x){
     if(x == "w" && !isColliding(-MOVEMENT_SPEED, 0))
         Player.y -= MOVEMENT_SPEED;
-    if(x =="s" && !isColliding(MOVEMENT_SPEED, 0))
+    if(x == "s" && !isColliding(MOVEMENT_SPEED, 0))
         Player.y += MOVEMENT_SPEED;
     if(x == "a" && !isColliding(0, -MOVEMENT_SPEED))
         Player.x -= MOVEMENT_SPEED;

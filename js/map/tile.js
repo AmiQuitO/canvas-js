@@ -19,8 +19,9 @@ class Tile{
         }
     }
 
-    static spriteFloor = [document.querySelector("#floor"), document.querySelector("#whiteFloor")];
-    static spriteWall = document.querySelector("#wall");
+    static floor = document.querySelector("#floor");
+    static floorWhite = document.querySelector("#whiteFloor");
+    static wall = document.querySelector("#wall");
 
     drawTile(posX, posY, gridX,gridY,scale,ctx){
         let height = 0;        
@@ -63,10 +64,13 @@ class Tile{
                 //ctx.drawImage(Tile.spriteFloor,    posX-(BASE_SCALE*2), posY-BASE_SCALE-h,   BASE_SCALE*4,BASE_SCALE*2); //podloga
             }      
         }
+        //console.log(Tile.spriteFloor[1]);
         if(this.height == 0 && this.type == "floor"){
-            ctx.drawImage(Tile.spriteFloor[1],    posX-(BASE_SCALE*2), posY,   BASE_SCALE*4,BASE_SCALE*2);
+            ctx.drawImage(Tile.floorWhite,    posX-(BASE_SCALE*2), posY,   BASE_SCALE*4,BASE_SCALE*2);
+        }else if(this.height == 1){
+            ctx.drawImage(Tile.floorWhite,    posX-(BASE_SCALE*2), posY-height,   BASE_SCALE*4,BASE_SCALE*2);
         }else{
-            ctx.drawImage(Tile.spriteFloor[0],    posX-(BASE_SCALE*2), posY-height,   BASE_SCALE*4,BASE_SCALE*2);
+            ctx.drawImage(Tile.floor,    posX-(BASE_SCALE*2), posY-height,   BASE_SCALE*4,BASE_SCALE*2);
         }
         //ctx.drawImage(this.spriteWall, posX-(BASE_SCALE*2), posY, BASE_SCALE*4,BASE_SCALE*2);            
     

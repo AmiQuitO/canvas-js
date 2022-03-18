@@ -89,27 +89,31 @@ function generateMap(){
         // staris
         mapTiles[sy + 1][sx + 1].height = 1;
 
+
+        // layouts
         for(let i=0;i<chunk.interior.length;i++){
             let baseX = sx + 1 + (11*(i%2));
             let baseY = sy + 1 + (11*(parseInt(i/2)%2));
-
             for(let j = 0; j<10; j++){
                 for(let k = 0; k<10; k++){
 
                     // needs update !!!!!!
                     let type, color, height, prop;
-                    prop = "none";
-                    if(Chunk.interiorBlueprints[i][j][k] < 10){
+                    check = Chunk.interiorBlueprints[i][chunk.interior[i]][j][k];
+                    type = "wall";
+                    color = DUN_COLOR[0];
+                    height = check-10;
+                    if(check < 10){
                         type = "floor";
                         color = DUN_COLOR[0];
                         height = 0;
                     }
-                    if(Chunk.interiorBlueprints[i][j][k]-10 == 1){
+                    if(check-10 > 10 && check-10 < 20){
                         type = "wall";
                         color = DUN_COLOR[0];
-                        height = Chunk.interiorBlueprints[i][j][k]-10;
+                        height = check-10;
                     }
-                    mapTiles[j][k] = new Tile(type, color, height, prop);
+                    mapTiles[baseY + j][baseX + k] = new Tile(type, color, height, prop);
                 }
             }
         }
@@ -229,6 +233,8 @@ function generateMap(){
 
 function generateInteriors(){
     for(let chunk of mapChunks){
+        if(chunk.x ==0 && chunk.y==0)
+            continue;
         for(let i=0;i<4;i++){
             let interiorNumber = Math.floor(Math.random()*Chunk.interiorBlueprints[i].length);
             chunk.interior.push(interiorNumber);
