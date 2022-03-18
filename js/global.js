@@ -21,4 +21,4 @@ const BASE_SCALE = 24; // normally 20 // in the final game 30/35?
 
 const SPRITE_SIZE = 32; // better not change
 const MOVEMENT_SPEED = 1; // normally 1
-let FOV = 15; // normally 20 // final 7?
+let FOV = 9; // normally 20 // final 7?

@@ -50,15 +50,39 @@ canvas{
     height: 50px;
     background-color: blue;
     z-index: 10;
-    margin: 5%;
+    margin: 2%;
 }
 #fst_button{
-    margin-left: 40%;
-    margin-right: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
 }
 
 @media screen and (max-width: 800px){
+        
+    #canvas-holder{
+        width: 400px;
+        height: 225px;
+    }
+    canvas{
+        width: 400px;
+        height: 225px;
+        border: 1px solid white;
+        image-rendering: pixelated;
+    }
+    #canvas-holder canvas{
+        position: absolute;
+        left:calc(50% - 200px);
+    }
     #canvas-holder #buttons-holder{
         display: flex;
+    }
+        
+    .buttons{
+        position: static;
+        width: 30px;
+        height: 30px;
+        background-color: blue;
+        z-index: 10;
+        margin: 1%;
     }
 }
