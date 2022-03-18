@@ -1,6 +1,7 @@
 function generateMap(){
     generateChunks();
     generateDoors();
+    generateInteriors();
     TILE_COLOR_LENGTH = TILE_COLOR.length;
     for(i=0;i<MAP_HEIGHT;i++){
         for(j=0;j<MAP_WIDTH;j++){
@@ -20,6 +21,7 @@ function generateMap(){
         let sx = chunk.x * CHUNKS_SIZE;
         let sy = chunk.y * CHUNKS_SIZE;
 
+        // get the center of the map
         sx += Math.round((MAP_WIDTH  / 2) - (CHUNKS_SIZE / 2));
         sy += Math.round((MAP_HEIGHT / 2) - (CHUNKS_SIZE / 2));
 
@@ -30,6 +32,7 @@ function generateMap(){
             mapTiles[sy + CHUNKS_SIZE - 1][sx + i] = new Tile("wall",DUN_COLOR[0], 2,"none");  
             mapTiles[sy + i][sx + CHUNKS_SIZE - 1] = new Tile("wall",DUN_COLOR[0], 2,"none");              
         }
+
 
         let chestPosX = Math.floor(Math.random()*CHUNKS_SIZE)-1;
         let chestPosY = Math.floor(Math.random()*CHUNKS_SIZE)-1;
@@ -83,23 +86,40 @@ function generateMap(){
         }
         */
 
-        /*
-        mapTiles[sx][sy + Math.floor(CHUNKS_SIZE / 2)] = new Tile("floor","#544",0); // right top
-        
-        mapTiles[sx + Math.floor(CHUNKS_SIZE / 2)][sy] = new Tile("floor","#544",0); // left top
-        
-        mapTiles[sx + CHUNKS_SIZE - 1][sy + Math.floor(CHUNKS_SIZE / 2)] = new Tile("floor","#544",0); 
-        mapTiles[sx + Math.floor(CHUNKS_SIZE / 2)][sy + CHUNKS_SIZE - 1] = new Tile("floor","#544",0);
-        */
-
         // staris
         mapTiles[sy + 1][sx + 1].height = 1;
+
+        for(let i=0;i<chunk.interior.length;i++){
+            let baseX = sx + 1 + (11*(i%2));
+            let baseY = sy + 1 + (11*(parseInt(i/2)%2));
+
+            for(let j = 0; j<10; j++){
+                for(let k = 0; k<10; k++){
+
+                    // needs update !!!!!!
+                    let type, color, height, prop;
+                    prop = "none";
+                    if(Chunk.interiorBlueprints[i][j][k] < 10){
+                        type = "floor";
+                        color = DUN_COLOR[0];
+                        height = 0;
+                    }
+                    if(Chunk.interiorBlueprints[i][j][k]-10 == 1){
+                        type = "wall";
+                        color = DUN_COLOR[0];
+                        height = Chunk.interiorBlueprints[i][j][k]-10;
+                    }
+                    mapTiles[j][k] = new Tile(type, color, height, prop);
+                }
+            }
+        }
     }
     middle = Math.floor(MAP_HEIGHT/2);
 
     // props for debug !!!!
     mapTiles[middle][middle-1] = new Tile("floor",DUN_COLOR[0], 0, "chest");
     mapTiles[middle][middle-2] = new Tile("floor",DUN_COLOR[0], 0, "npc");
+    mapTiles[middle][middle-3] = new Tile("floor",DUN_COLOR[0], 0, "crate");
 
     console.log(mapTiles);
     console.log(mapChunks);
@@ -206,3 +226,12 @@ function generateMap(){
     console.log(mapTiles);
 }
 */
+
+function generateInteriors(){
+    for(let chunk of mapChunks){
+        for(let i=0;i<4;i++){
+            let interiorNumber = Math.floor(Math.random()*Chunk.interiorBlueprints[i].length);
+            chunk.interior.push(interiorNumber);
+        }
+    }
+}

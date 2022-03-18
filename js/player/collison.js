@@ -32,8 +32,14 @@ function isPropCollision(x, y){
         Player.gold += Math.floor(Math.random()*9)+2;
         return false;
     }
+    if(mapTiles[y][x].prop == "crate"){
+        mapTiles[y][x].prop = "none";
+
+        // future functionality!!!
+
+        return false;
+    }
     if(mapTiles[y][x].prop == "npc"){
-        
         return true;
     }
 }
