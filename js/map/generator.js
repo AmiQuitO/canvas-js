@@ -25,10 +25,10 @@ function generateMap(){
 
         // walls
         for (let i = 0; i < CHUNKS_SIZE; i++) {   
-            mapTiles[sy][sx + i] = new Tile("wall", DUN_COLOR[0], 2,"none");       
-            mapTiles[sy + i][sx] = new Tile("wall", DUN_COLOR[0], 2,"none");  
-            mapTiles[sy + CHUNKS_SIZE - 1][sx + i] = new Tile("wall",DUN_COLOR[0], 2,"none");  
-            mapTiles[sy + i][sx + CHUNKS_SIZE - 1] = new Tile("wall",DUN_COLOR[0], 2,"none");              
+            mapTiles[sy][sx + i] = new Tile("wall", DUN_COLOR[0], 2);       
+            mapTiles[sy + i][sx] = new Tile("wall", DUN_COLOR[0], 2);  
+            mapTiles[sy + CHUNKS_SIZE - 1][sx + i] = new Tile("wall",DUN_COLOR[0], 2);  
+            mapTiles[sy + i][sx + CHUNKS_SIZE - 1] = new Tile("wall",DUN_COLOR[0], 2);              
         }
 
         let chestPosX = Math.floor(Math.random()*CHUNKS_SIZE)-1;
@@ -44,7 +44,7 @@ function generateMap(){
                     continue;
                 }
 
-                mapTiles[sy + j][sx + i] = new Tile("floor",DUN_COLOR[0], 0,"none");
+                mapTiles[sy + j][sx + i] = new Tile("floor",DUN_COLOR[0], 0);
             }
         }
 
