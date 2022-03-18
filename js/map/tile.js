@@ -38,6 +38,8 @@ class Tile{
         //     (Math.sqrt((gridX-Player.x) * (gridX-Player.x) + (gridY-Player.y) * (gridY-Player.y)) < radius)
         //     ) 
         //
+
+        // reveal the player system
         let radius = 1;
         if ((this.height - 1 > Player.currentHeight) && 
             (this.height / 1.5 * radius > gridY - Player.y) && (gridY >= Player.y) &&
@@ -46,7 +48,7 @@ class Tile{
             ctx.fillStyle = "#111111";
         }
 
-        
+        // filling the tile with colour
         ctx.beginPath();
         ctx.moveTo(posX, posY-height);                    //top
         ctx.lineTo(posX+(scale*2), posY+scale-height);    //left top
@@ -56,13 +58,17 @@ class Tile{
         ctx.lineTo(posX-(scale*2), posY+scale-height);    //right top
         ctx.lineTo(posX, posY-height);                    //top
         ctx.fill();
-        ctx.stroke();
         
+
+        // drawing sprites
         for (let h = 0; h < height; h+=scale) {
             ctx.drawImage(Tile.spriteWall, posX-(BASE_SCALE*2), posY-h, BASE_SCALE*4,BASE_SCALE*2); //sciana
             if (h == height - scale) {
-                //ctx.drawImage(this.spriteFloor,    posX-(BASE_SCALE*2), posY-BASE_SCALE-h,   BASE_SCALE*4,BASE_SCALE*2); //podloga
+                //ctx.drawImage(Tile.spriteFloor,    posX-(BASE_SCALE*2), posY-BASE_SCALE-h,   BASE_SCALE*4,BASE_SCALE*2); //podloga
             }      
+        }
+        if(this.height == 0 && this.type == "floor"){
+            ctx.drawImage(Tile.spriteFloor,    posX-(BASE_SCALE*2), posY,   BASE_SCALE*4,BASE_SCALE*2);
         }
         //ctx.drawImage(this.spriteWall, posX-(BASE_SCALE*2), posY, BASE_SCALE*4,BASE_SCALE*2);            
     

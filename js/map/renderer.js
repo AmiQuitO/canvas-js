@@ -19,7 +19,11 @@ function drawMap(){
 
             // drawing props
             if(mapTiles[i][j].prop != "none"){
-                MAP_CTX.drawImage(mapTiles[i][j].spriteProp, x-(BASE_SCALE*4), y-(BASE_SCALE*4) + BASE_SCALE - (BASE_SCALE*mapTiles[i][j].height), BASE_SCALE*8, BASE_SCALE*8);
+                if(mapTiles[i][j].prop == "door"){  
+                    MAP_CTX.drawImage(mapTiles[i][j].spriteProp, x-(BASE_SCALE*2), y-(BASE_SCALE*4) + BASE_SCALE - (BASE_SCALE*mapTiles[i][j].height), BASE_SCALE*4, BASE_SCALE*4);
+                }else{
+                    MAP_CTX.drawImage(mapTiles[i][j].spriteProp, x-(BASE_SCALE*4), y-(BASE_SCALE*4) + BASE_SCALE - (BASE_SCALE*mapTiles[i][j].height), BASE_SCALE*8, BASE_SCALE*8);
+                }
             }
             
             // drawing the player

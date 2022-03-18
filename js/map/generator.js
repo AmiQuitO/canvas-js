@@ -25,10 +25,10 @@ function generateMap(){
 
         // walls
         for (let i = 0; i < CHUNKS_SIZE; i++) {   
-            mapTiles[sy][sx + i] = new Tile("wall","#333", 2,"none");       
-            mapTiles[sy + i][sx] = new Tile("wall","#333", 2,"none");  
-            mapTiles[sy + CHUNKS_SIZE - 1][sx + i] = new Tile("wall","#333", 2,"none");  
-            mapTiles[sy + i][sx + CHUNKS_SIZE - 1] = new Tile("wall","#333", 2,"none");              
+            mapTiles[sy][sx + i] = new Tile("wall", DUN_COLOR[0], 2,"none");       
+            mapTiles[sy + i][sx] = new Tile("wall", DUN_COLOR[0], 2,"none");  
+            mapTiles[sy + CHUNKS_SIZE - 1][sx + i] = new Tile("wall",DUN_COLOR[0], 2,"none");  
+            mapTiles[sy + i][sx + CHUNKS_SIZE - 1] = new Tile("wall",DUN_COLOR[0], 2,"none");              
         }
 
         let chestPosX = Math.floor(Math.random()*CHUNKS_SIZE)-1;
@@ -39,12 +39,12 @@ function generateMap(){
             for (let j = 1; j < CHUNKS_SIZE - 1; j++) {
 
                 if(chestPosX == j && chestPosY == i && chestGenerationChance == 1){
-                    mapTiles[sy + j][sx + i] = new Tile("floor","#544", 0,"chest") // chest generator 
+                    mapTiles[sy + j][sx + i] = new Tile("floor",DUN_COLOR[0], 0,"chest") // chest generator 
                     console.log((sx + i), (sy + j)); 
                     continue;
                 }
 
-                mapTiles[sy + j][sx + i] = new Tile("floor","#544", 0,"none");
+                mapTiles[sy + j][sx + i] = new Tile("floor",DUN_COLOR[0], 0,"none");
             }
         }
 
@@ -52,16 +52,16 @@ function generateMap(){
 
         for(i=0;i<chunk.doorsPlacement.length;i++){
             if(chunk.doorsPlacement[i] == 4){
-                mapTiles[sy + Math.floor(CHUNKS_SIZE / 2)][sx] = new Tile("floor","#544", 0,"door");
+                mapTiles[sy + Math.floor(CHUNKS_SIZE / 2)][sx] = new Tile("floor",DUN_COLOR[0], 0,"door");
             }
             if(chunk.doorsPlacement[i] == 1){
-                mapTiles[sy][sx + Math.floor(CHUNKS_SIZE / 2)] = new Tile("floor","#544", 0,"door");
+                mapTiles[sy][sx + Math.floor(CHUNKS_SIZE / 2)] = new Tile("floor",DUN_COLOR[0], 0,"door");
             }
             if(chunk.doorsPlacement[i] == 2){
-                mapTiles[sy + Math.floor(CHUNKS_SIZE / 2)][sx + CHUNKS_SIZE - 1] = new Tile("floor","#544", 0,"door"); 
+                mapTiles[sy + Math.floor(CHUNKS_SIZE / 2)][sx + CHUNKS_SIZE - 1] = new Tile("floor",DUN_COLOR[0], 0,"door"); 
             }
             if(chunk.doorsPlacement[i] == 3){
-                mapTiles[sy + CHUNKS_SIZE - 1][sx + Math.floor(CHUNKS_SIZE / 2)] = new Tile("floor","#544", 0,"door");
+                mapTiles[sy + CHUNKS_SIZE - 1][sx + Math.floor(CHUNKS_SIZE / 2)] = new Tile("floor",DUN_COLOR[0], 0,"door");
             }
         }
 
@@ -96,9 +96,11 @@ function generateMap(){
         mapTiles[sy + 1][sx + 1].height = 1;
     }
     middle = Math.floor(MAP_HEIGHT/2);
+
     // props for debug !!!!
-    mapTiles[middle][middle-1] = new Tile("floor","#544", 0, "chest");
-    mapTiles[middle][middle-2] = new Tile("floor","#544", 0, "npc");
+    mapTiles[middle][middle-1] = new Tile("floor",DUN_COLOR[0], 0, "chest");
+    mapTiles[middle][middle-2] = new Tile("floor",DUN_COLOR[0], 0, "npc");
+
     console.log(mapTiles);
     console.log(mapChunks);
 }

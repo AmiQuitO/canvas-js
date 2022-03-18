@@ -12,11 +12,17 @@
     <img src="img/tileFloor.png" style="display:none" id="floor"/>
     <img src="img/chest.png" style="display:none" id="chest"/>
     <img src="img/npc.png" style="display:none" id="npc"/>
-    <img src="img/none.png" style="display:none" id="door"/>
-    <img src="img/PlayerSprite.png" style="display:none"/>
+    <img src="img/door.png" style="display:none" id="door"/>
+    <img src="img/player.png" style="display:none" id="player"/>
 
     <div>W⇗, ⇖A, S⇙, D⇘ to move</div>
     <div id="canvas-holder">
+        <div id="buttons-holder">
+            <div class='buttons' onclick='buttonsMove(`w`)' id="fst_button"></div>
+            <div class='buttons' onclick='buttonsMove(`a`)'></div>
+            <div class='buttons' onclick='buttonsMove(`s`)'></div>
+            <div class='buttons' onclick='buttonsMove(`d`)'></div>
+        </div>       
     </div>
 
     <script src="js/global.js"></script>

@@ -44,12 +44,13 @@ function clearCanvas(ctx){
 
 //debug
 function drawPos(){
-    UI_CTX.font = '48px monospace';
+    UI_CTX.font = '22px monospace';
     UI_CTX.fillStyle = "#ffffff";
-    UI_CTX.fillText(`${Player.x}, ${Player.y}`, 0, 40);
+    UI_CTX.fillText(`${Player.x}, ${Player.y}`, 0, 18);
 }
 function drawGoldCount(){
-    UI_CTX.font = '40px monospace';
+    UI_CTX.font = '30px monospace';
     UI_CTX.fillStyle = "#ffffff";
-    UI_CTX.fillText(`${Player.gold}`, CANVAS_WIDTH - 100, CANVAS_HEIGHT  - 40);
+    UI_CTX.fillText(`${Player.gold}`, 50, CANVAS_HEIGHT - 50);
+    //UI_CTX.fillText(`${Player.gold}`, CANVAS_WIDTH - (CANVAS_WIDTH/10), CANVAS_HEIGHT -  (CANVAS_HEIGHT/10));
 }
