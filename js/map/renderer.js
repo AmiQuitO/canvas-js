@@ -20,7 +20,7 @@ function drawMap(){
             // drawing props
             if(mapTiles[i][j].prop != "none"){
                 if(mapTiles[i][j].prop == "door"){  
-                    MAP_CTX.drawImage(mapTiles[i][j].spriteProp, x-(BASE_SCALE*2), y-(BASE_SCALE*4) + BASE_SCALE - (BASE_SCALE*mapTiles[i][j].height), BASE_SCALE*4, BASE_SCALE*4);
+                    MAP_CTX.drawImage(mapTiles[i][j].spriteProp, x-(BASE_SCALE*2), y-(BASE_SCALE*2) + BASE_SCALE - (BASE_SCALE*mapTiles[i][j].height), BASE_SCALE*4, BASE_SCALE*4);
                 }else{
                     MAP_CTX.drawImage(mapTiles[i][j].spriteProp, x-(BASE_SCALE*4), y-(BASE_SCALE*4) + BASE_SCALE - (BASE_SCALE*mapTiles[i][j].height), BASE_SCALE*8, BASE_SCALE*8);
                 }
