@@ -8,14 +8,16 @@
     <title>Canvas game</title>
 </head>
 <body>
-    <img src="img/tileWall.png" style="display:none" id="wall"/>
-    <img src="img/floor.png" style="display:none" id="floor"/>
-    <img src="img/whiteFloor.png" style="display:none" id="whiteFloor"/>
-    <img src="img/chest.png" style="display:none" id="chest"/>
-    <img src="img/crate.png" style="display:none" id="crate"/>
-    <img src="img/npc.png" style="display:none" id="npc"/>
-    <img src="img/door.png" style="display:none" id="door"/>
-    <img src="img/player.png" style="display:none" id="player"/>
+    <div style="display:none">
+        <img src="img/tileWall.png"   id="wall"/>
+        <img src="img/floor.png"      id="floor"/>
+        <img src="img/whiteFloor.png" id="whiteFloor"/>
+        <img src="img/chest.png"      id="chest"/>
+        <img src="img/crate.png"      id="crate"/>
+        <img src="img/npc.png"        id="npc"/>
+        <img src="img/door.png"       id="door"/>
+        <img src="img/player.png"     id="player"/>
+    </div>
 
     <div>W⇗, ⇖A, S⇙, D⇘ to move</div>
     <div id="canvas-holder">
@@ -29,7 +31,7 @@
 
     <script src="js/global.js"></script>
     <script src="js/canvas.js"></script>
-    <!--<script src="js/map/prop.js"></script>-->
+    <script src="js/map/prop.js"></script>
     <script src="js/map/tile.js"></script>
     <script src="js/map/chunk.js"></script>
     <script src="js/map/generator.js"></script>

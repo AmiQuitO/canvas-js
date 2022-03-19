@@ -17,15 +17,6 @@ function drawMap(ctx){
             // drawing tiles
             mapTiles[i][j].drawTile(x, y,j,i, 0, ctx);
 
-            // drawing props
-            if(mapTiles[i][j].prop != "none"){
-                if(mapTiles[i][j].prop == "door"){  
-                    ctx.drawImage(mapTiles[i][j].spriteProp, x-(BASE_SCALE*2), y-(BASE_SCALE*2) + BASE_SCALE - (BASE_SCALE*mapTiles[i][j].height), BASE_SCALE*4, BASE_SCALE*4);
-                }else{
-                    ctx.drawImage(mapTiles[i][j].spriteProp, x-(BASE_SCALE*4), y-(BASE_SCALE*4) + BASE_SCALE - (BASE_SCALE*mapTiles[i][j].height), BASE_SCALE*8, BASE_SCALE*8);
-                }
-            }
-            
             // drawing the player
             if(i==Player.y && j==Player.x){
                 ctx.drawImage(Player.sprite, (CANVAS_WIDTH/2)-(BASE_SCALE*4), (CANVAS_HEIGHT/2)-(BASE_SCALE*4) - (Player.currentHeight * BASE_SCALE), BASE_SCALE*8, BASE_SCALE*8);

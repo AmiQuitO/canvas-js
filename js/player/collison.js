@@ -10,11 +10,10 @@ function isColliding(y, x){
 
         // can interact with things on the same height
         if (diff < 2) {
-            if (isPropCollision(x, y)){
-                beginCanvas();
+            if(handlePropCollision(x,y))
                 return true;
-            }
-            Player.currentHeight = mapTiles[y][x].height 
+            else
+                Player.currentHeight = mapTiles[y][x].height 
         }
 
         if(mapTiles[y][x].height != Player.currentHeight){
@@ -26,20 +25,22 @@ function isColliding(y, x){
     }
 }
 
-function isPropCollision(x, y){
-    if(mapTiles[y][x].prop == "chest"){
-        mapTiles[y][x].prop = "none";
-        Player.gold += Math.floor(Math.random()*9)+2;
-        return false;
-    }
-    if(mapTiles[y][x].prop == "crate"){
-        mapTiles[y][x].prop = "none";
+function handlePropCollision(x, y){
+    let tile = mapTiles[y][x];
+    let prop = tile.prop;
 
-        // future functionality!!!
-
+    if (prop) {
+        if (prop.onPlayerEnter) {            
+            let res = prop.onPlayerEnter(Player,tile);
+            if(res == undefined)
+                return prop.collision;
+            else
+                return res;
+        }
+        else
+            return prop.collision;
+    }
+    else
         return false;
-    }
-    if(mapTiles[y][x].prop == "npc"){
-        return true;
-    }
+
 }

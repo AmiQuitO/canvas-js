@@ -8,7 +8,7 @@ function generateMap(){
             let pickedColor = Math.floor(Math.random()*(TILE_COLOR_LENGTH-1));
             if(mapTiles[i] == undefined)
                 mapTiles[i] = [];
-            mapTiles[i][j] = new Tile("some type", TILE_COLOR[pickedColor], 0,"none");
+            mapTiles[i][j] = new Tile("some type", TILE_COLOR[pickedColor], 0);
         }
     }
 
@@ -42,7 +42,7 @@ function generateMap(){
             for (let j = 1; j < CHUNKS_SIZE - 1; j++) {
 
                 if(chestPosX == j && chestPosY == i && chestGenerationChance == 1){
-                    mapTiles[sy + j][sx + i] = new Tile("floor",DUN_COLOR[0], 0,"chest") // chest generator 
+                    mapTiles[sy + j][sx + i] = new Tile("floor",DUN_COLOR[0], 0,new PropChest()) // chest generator 
                     console.log((sx + i), (sy + j)); 
                     continue;
                 }
@@ -55,16 +55,16 @@ function generateMap(){
 
         for(i=0;i<chunk.doorsPlacement.length;i++){
             if(chunk.doorsPlacement[i] == 4){
-                mapTiles[sy + Math.floor(CHUNKS_SIZE / 2)][sx] = new Tile("floor",DUN_COLOR[0], 0,"door");
+                mapTiles[sy + Math.floor(CHUNKS_SIZE / 2)][sx] = new Tile("floor",DUN_COLOR[0], 0,new PropDoor());
             }
             if(chunk.doorsPlacement[i] == 1){
-                mapTiles[sy][sx + Math.floor(CHUNKS_SIZE / 2)] = new Tile("floor",DUN_COLOR[0], 0,"door");
+                mapTiles[sy][sx + Math.floor(CHUNKS_SIZE / 2)] = new Tile("floor",DUN_COLOR[0], 0,new PropDoor());
             }
             if(chunk.doorsPlacement[i] == 2){
-                mapTiles[sy + Math.floor(CHUNKS_SIZE / 2)][sx + CHUNKS_SIZE - 1] = new Tile("floor",DUN_COLOR[0], 0,"door"); 
+                mapTiles[sy + Math.floor(CHUNKS_SIZE / 2)][sx + CHUNKS_SIZE - 1] = new Tile("floor",DUN_COLOR[0], 0,new PropDoor()); 
             }
             if(chunk.doorsPlacement[i] == 3){
-                mapTiles[sy + CHUNKS_SIZE - 1][sx + Math.floor(CHUNKS_SIZE / 2)] = new Tile("floor",DUN_COLOR[0], 0,"door");
+                mapTiles[sy + CHUNKS_SIZE - 1][sx + Math.floor(CHUNKS_SIZE / 2)] = new Tile("floor",DUN_COLOR[0], 0,new PropDoor());
             }
         }
 
@@ -121,9 +121,9 @@ function generateMap(){
     middle = Math.floor(MAP_HEIGHT/2);
 
     // props for debug !!!!
-    mapTiles[middle][middle-1] = new Tile("floor",DUN_COLOR[0], 0, "chest");
-    mapTiles[middle][middle-2] = new Tile("floor",DUN_COLOR[0], 0, "npc");
-    mapTiles[middle][middle-3] = new Tile("floor",DUN_COLOR[0], 0, "crate");
+    mapTiles[middle][middle-1] = new Tile("floor",DUN_COLOR[0], 0, new PropChest());
+    mapTiles[middle][middle-2] = new Tile("floor",DUN_COLOR[0], 0, new PropNpc());
+    mapTiles[middle][middle-3] = new Tile("floor",DUN_COLOR[0], 0, new PropCrate());
 
     console.log(mapTiles);
     console.log(mapChunks);
