@@ -2,13 +2,15 @@ function generateMap(){
     generateChunks();
     generateDoors();
     generateInteriors();
+
+    // create the map
     TILE_COLOR_LENGTH = TILE_COLOR.length;
     for(i=0;i<MAP_HEIGHT;i++){
         for(j=0;j<MAP_WIDTH;j++){
             let pickedColor = Math.floor(Math.random()*(TILE_COLOR_LENGTH-1));
             if(mapTiles[i] == undefined)
                 mapTiles[i] = [];
-            mapTiles[i][j] = new Tile("some type", TILE_COLOR[pickedColor], 0);
+            mapTiles[i][j] = new Tile("some type", "#222222", 0);
         }
     }
 
@@ -100,18 +102,20 @@ function generateMap(){
                     // needs update !!!!!!
                     let type, color, height, prop;
                     check = Chunk.interiorBlueprints[i][chunk.interior[i]][j][k];
-                    type = "wall";
-                    color = DUN_COLOR[0];
-                    height = check-10;
-                    if(check < 10){
+                    if(check == 0){
                         type = "floor";
                         color = DUN_COLOR[0];
                         height = 0;
                     }
-                    if(check-10 > 10 && check-10 < 20){
+                    if(check > 10 && check < 20){
                         type = "wall";
                         color = DUN_COLOR[0];
                         height = check-10;
+                    }
+                    if(check > 19 && check < 30){
+                        type = "floor";
+                        color = DUN_COLOR[0];
+                        height = 0;
                     }
                     mapTiles[baseY + j][baseX + k] = new Tile(type, color, height, prop);
                 }

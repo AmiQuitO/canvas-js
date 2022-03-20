@@ -13,6 +13,14 @@ body{
     flex-wrap: wrap;
     flex-direction: column;
 }
+#baner{
+    width: 300px;
+    height: 100px;
+    background-image: url(img/philosopherstalev1.png);
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 #canvas-holder{
     position: relative;
     width: 800px;
@@ -22,6 +30,7 @@ canvas{
     width: 800px;
     height: 450px;
     border: 1px solid white;
+    
     image-rendering: pixelated;
 }
 

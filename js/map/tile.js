@@ -59,10 +59,12 @@ class Tile{
         //console.log(Tile.spriteFloor[1]);
         if(this.height == 0 && this.type == "floor"){
             ctx.drawImage(Tile.floorWhite,    posX-(BASE_SCALE*2), posY,   BASE_SCALE*4,BASE_SCALE*2);
-        }else if(this.height == 1){
+        }else if(this.height == 1 && this.type == "floor"){
             ctx.drawImage(Tile.floorWhite,    posX-(BASE_SCALE*2), posY-height,   BASE_SCALE*4,BASE_SCALE*2);
-        }else{
+        }else if(this.type == "wall"){
             ctx.drawImage(Tile.floor,    posX-(BASE_SCALE*2), posY-height,   BASE_SCALE*4,BASE_SCALE*2);
+        }else{
+            
         }
         //ctx.drawImage(this.spriteWall, posX-(BASE_SCALE*2), posY, BASE_SCALE*4,BASE_SCALE*2);            
     
