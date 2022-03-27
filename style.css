@@ -7,11 +7,6 @@
 }
 body{
     background-color: #222222;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    flex-direction: column;
 }
 #baner{
     width: 300px;
@@ -23,20 +18,22 @@ body{
 }
 #canvas-holder{
     position: relative;
+    display: block;
+    margin: auto;
     width: 800px;
     height: 450px;
 }
 canvas{
-    width: 800px;
-    height: 450px;
+    width: 100%;
+    height: 100%;
+    /*
     border: 1px solid white;
-    
+    */
     image-rendering: pixelated;
 }
 
 #canvas-holder canvas{
     position: absolute;
-    left:calc(50% - 400px);
 }
 
 #canvas-holder #buttons-holder{

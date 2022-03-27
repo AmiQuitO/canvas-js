@@ -7,7 +7,10 @@ function isColliding(y, x){
 
         let diff = Math.max(Player.currentHeight - mapTiles[y][x].height,mapTiles[y][x].height - Player.currentHeight)
 
-
+        if(mapTiles[y][x].type == "wall"){
+            return true;
+        }
+        
         // can interact with things on the same height
         if (diff < 2) {
             if(handlePropCollision(x,y))
@@ -18,10 +21,18 @@ function isColliding(y, x){
 
         if(mapTiles[y][x].height != Player.currentHeight){
             return true;
+        }
+
+
+        return false;
+        /* 
+        if(mapTiles[y][x].height != Player.currentHeight){
+            return true;
         }else{
             //Player.currentHeight = mapTiles[y][x].height //falling (also add > instead of != above)
             return false;
         }
+        */
     }
 }
 
@@ -32,7 +43,7 @@ function handlePropCollision(x, y){
     if (prop) {
         if (prop.onPlayerEnter) {            
             let res = prop.onPlayerEnter(Player,tile);
-            if(res == undefined)
+            if(res == null)
                 return prop.collision;
             else
                 return res;

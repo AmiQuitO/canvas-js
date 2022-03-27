@@ -8,7 +8,7 @@ function generateMap(){
     for(i=0;i<MAP_HEIGHT;i++){
         for(j=0;j<MAP_WIDTH;j++){
             let pickedColor = Math.floor(Math.random()*(TILE_COLOR_LENGTH-1));
-            if(mapTiles[i] == undefined)
+            if(mapTiles[i] == null)
                 mapTiles[i] = [];
             mapTiles[i][j] = new Tile("some type", "#222222", 0);
         }
@@ -98,10 +98,20 @@ function generateMap(){
             let baseY = sy + 1 + (11*(parseInt(i/2)%2));
             for(let j = 0; j<10; j++){
                 for(let k = 0; k<10; k++){
+                    if(i == 0){
+                        check = Chunk.interiorBlueprints[chunk.interior[i]][j][k];
+                    }else if(i == 1){
+                        check = Chunk.interiorBlueprints[chunk.interior[i]][j][9-k];
+                    }else if(i == 2){
+                        check = Chunk.interiorBlueprints[chunk.interior[i]][9-j][k];
+                    }else if(i == 3){
+                        check = Chunk.interiorBlueprints[chunk.interior[i]][9-j][9-k];
+                    }
+                    /*
 
                     // needs update !!!!!!
                     let type, color, height, prop;
-                    check = Chunk.interiorBlueprints[i][chunk.interior[i]][j][k];
+
                     if(check == 0){
                         type = "floor";
                         color = DUN_COLOR[0];
@@ -117,7 +127,8 @@ function generateMap(){
                         color = DUN_COLOR[0];
                         height = 0;
                     }
-                    mapTiles[baseY + j][baseX + k] = new Tile(type, color, height, prop);
+                    */
+                    mapTiles[baseY + j][baseX + k] = new Tile(check[0], check[1], check[2], check[3]);
                 }
             }
         }
@@ -222,7 +233,7 @@ function generateMap(){
                 spritee = "./img/tileFloor.png";
                 spriteee = "./img/tileWall.png";
             }
-            if(mapTiles[i] == undefined)
+            if(mapTiles[i] == null)
                 mapTiles[i] = [];
                 mapTiles[i][j] = new Tile("some type", TILE_COLOR[pickedColor], collisionsmaybe);
             if(collisionrandom == 1){
@@ -240,7 +251,7 @@ function generateInteriors(){
         if(chunk.x ==0 && chunk.y==0)
             continue;
         for(let i=0;i<4;i++){
-            let interiorNumber = Math.floor(Math.random()*Chunk.interiorBlueprints[i].length);
+            let interiorNumber = Math.floor(Math.random()*Chunk.interiorBlueprints.length);
             chunk.interior.push(interiorNumber);
         }
     }

@@ -1,4 +1,7 @@
-let canvasHolder = document.querySelector("#canvas-holder")
+let canvasHolder = document.querySelector("#canvas-holder");
+// temporarily
+let baner = new Image();
+baner.src = "img/philosopherstalev1.png";
 
 const MAIN_CANVAS = document.createElement("canvas");
 MAIN_CANVAS.width = CANVAS_WIDTH;
@@ -40,6 +43,7 @@ function drawPos(){
     UI_CTX.font = '22px monospace';
     UI_CTX.fillStyle = "#ffffff";
     UI_CTX.fillText(`${Player.x}, ${Player.y}`, 0, 18);
+    UI_CTX.drawImage(baner, CANVAS_WIDTH-220, CANVAS_HEIGHT-60, 200, 40);
 }
 function drawGoldCount(){
     UI_CTX.font = '30px monospace';

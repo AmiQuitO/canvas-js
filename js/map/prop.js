@@ -15,7 +15,7 @@ class Prop {
      * @abstract 
      * @param {Controller} player
      * @param {Tile} owner
-     * @returns {boolean | undefined}
+     * @returns {boolean | null}
      * */
     onPlayerEnter(player,owner)
     {}
@@ -41,12 +41,12 @@ class PropChest extends Prop {
     /** 
      * @param {Controller} player
      * @param {Tile} owner
-     * @returns {boolean | undefined}
+     * @returns {boolean | null}
      * */
     onPlayerEnter(player,owner)
     {
         player.gold += Math.floor(Math.random()*9)+2;
-        owner.prop = undefined;
+        owner.prop = null;
     }
 }
 
@@ -59,11 +59,11 @@ class PropCrate extends Prop {
     /** 
      * @param {Controller} player
      * @param {Tile} owner
-     * @returns {boolean | undefined}
+     * @returns {boolean | null}
      * */
     onPlayerEnter(player,owner)
     {
-        owner.prop = undefined;
+        owner.prop = null;
     }
 }
 

@@ -12,7 +12,9 @@
     <div style="display:none">
         <img src="img/tileWall.png"   id="wall"/>
         <img src="img/floor.png"      id="floor"/>
-        <img src="img/whiteFloor.png" id="whiteFloor"/>
+        <img src="img/floorWhite.png" id="floorWhite"/>
+        <img src="img/floorBlack.png" id="floorBlack"/>
+        <img src="img/floorVoid.png"  id="floorVoid"/>
         <img src="img/chest.png"      id="chest"/>
         <img src="img/crate.png"      id="crate"/>
         <img src="img/npc.png"        id="npc"/>
@@ -20,7 +22,7 @@
         <img src="img/player.png"     id="player"/>
     </div>
 
-    <div>W⇗, ⇖A, S⇙, D⇘ to move</div>
+    <div style="text-align: center; width: 100%;">W⇗, ⇖A, S⇙, D⇘ to move</div>
     <div id="canvas-holder">
         <div id="buttons-holder">
             <div class='buttons' onclick='buttonsMove(`w`)' id="fst_button"></div>
@@ -29,14 +31,21 @@
             <div class='buttons' onclick='buttonsMove(`d`)'></div>
         </div>       
     </div>
-    <div id="baner"></div>
+    <!--
+        <div id="baner"></div>
+    -->
+
     <script src="js/global.js"></script>
     <script src="js/canvas.js"></script>
+
     <script src="js/map/prop.js"></script>
     <script src="js/map/tile.js"></script>
-    <script src="js/map/chunk.js"></script>
     <script src="js/map/generator.js"></script>
     <script src="js/map/renderer.js"></script>
+
+    <script src="js/map/chunks/chunk.js"></script>
+    <script src="js/map/chunks/interiors.js"></script>
+
     <script src="js/player/collison.js"></script>
     <script src="js/player/player.js"></script>
     

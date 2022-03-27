@@ -20,11 +20,11 @@ const BASE_CHEST_COUNT = 1;
 const BASE_CREATE_COUNT = 3;
 const BASE_ENEMY_COUNT = 4;
 
-const CANVAS_HEIGHT = 450; // 450
-const CANVAS_WIDTH = 800; // 800
-const BASE_SCALE = 24; // leave it on 24
+const CANVAS_HEIGHT = 900; // 450
+const CANVAS_WIDTH = 1600; // 800
+const BASE_SCALE = 32; // leave it on 24
 
 const SPRITE_SIZE = 32; // better not change
 
 const MOVEMENT_SPEED = 1; // normally 1
-let FOV = 10; // normally 20 // final 7?
+let FOV = 12; // normally 20 // final 7?

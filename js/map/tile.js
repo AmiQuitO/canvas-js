@@ -1,5 +1,5 @@
 class Tile{
-    constructor(type, color, height, prop = undefined){
+    constructor(type, color, height, prop = null){
         this.type = type;
         // future types: exit of the stage | get up / get down one level | destructibles wood minerals? | 
         // add!!! stairs | passing to another level | doors
@@ -12,7 +12,9 @@ class Tile{
     }
 
     static floor = document.querySelector("#floor");
-    static floorWhite = document.querySelector("#whiteFloor");
+    static floorWhite = document.querySelector("#floorWhite");
+    static floorBlack = document.querySelector("#floorBlack");
+    static floorVoid = document.querySelector("#floorVoid");
     static wall = document.querySelector("#wall");
 
     drawTile(posX, posY, gridX,gridY,scale,ctx){
@@ -37,7 +39,7 @@ class Tile{
             ctx.fillStyle = "#111111";
         }
 
-        // filling the tile with colour
+        // filling the tile with color
         ctx.beginPath();
         ctx.moveTo(posX, posY-height);                    //top
         ctx.lineTo(posX+(scale*2), posY+scale-height);    //left top
@@ -48,26 +50,25 @@ class Tile{
         ctx.lineTo(posX, posY-height);                    //top
         ctx.fill();
         
-
-        // drawing sprites
+        // drawing wall sprites
         for (let h = 0; h < height; h+=scale) {
-            ctx.drawImage(Tile.spriteWall, posX-(BASE_SCALE*2), posY-h, BASE_SCALE*4,BASE_SCALE*2); //sciana
+            ctx.drawImage(Tile.wall, posX-(BASE_SCALE*2), posY-h, BASE_SCALE*4,BASE_SCALE*2); //sciana
             if (h == height - scale) {
-                //ctx.drawImage(Tile.spriteFloor,    posX-(BASE_SCALE*2), posY-BASE_SCALE-h,   BASE_SCALE*4,BASE_SCALE*2); //podloga
+                ctx.drawImage(Tile.floor,    posX-(BASE_SCALE*2), posY-BASE_SCALE-h,   BASE_SCALE*4,BASE_SCALE*2); //podloga
             }      
         }
-        //console.log(Tile.spriteFloor[1]);
-        if(this.height == 0 && this.type == "floor"){
-            ctx.drawImage(Tile.floorWhite,    posX-(BASE_SCALE*2), posY,   BASE_SCALE*4,BASE_SCALE*2);
-        }else if(this.height == 1 && this.type == "floor"){
-            ctx.drawImage(Tile.floorWhite,    posX-(BASE_SCALE*2), posY-height,   BASE_SCALE*4,BASE_SCALE*2);
+
+        // drawing the floor sprites
+        if(this.type == "floor" && this.height < 2){
+            ctx.drawImage(Tile.floorWhite,    posX-(BASE_SCALE*2), posY- height,   BASE_SCALE*4,BASE_SCALE*2);
         }else if(this.type == "wall"){
             ctx.drawImage(Tile.floor,    posX-(BASE_SCALE*2), posY-height,   BASE_SCALE*4,BASE_SCALE*2);
-        }else{
-            
+        }else if(this.type == "void"){
+            ctx.drawImage(Tile.floorVoid,    posX-(BASE_SCALE*2), posY-height,   BASE_SCALE*4,BASE_SCALE*2);
         }
         //ctx.drawImage(this.spriteWall, posX-(BASE_SCALE*2), posY, BASE_SCALE*4,BASE_SCALE*2);            
     
+        //prop drawing
         if(this.prop){
             if (!this.prop.drawProp) 
                 console.error(this.prop," Wrong Prop Type");
