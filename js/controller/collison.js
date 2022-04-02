@@ -5,9 +5,9 @@ function isColliding(y, x){
         y = (Player.y + y);
         x = (Player.x + x);
 
-        let diff = Math.max(Player.currentHeight - mapTiles[y][x].height,mapTiles[y][x].height - Player.currentHeight)
+        let diff = Math.max(Player.currentHeight - MAP.tiles[y][x].height , MAP.tiles[y][x].height - Player.currentHeight)
 
-        if(mapTiles[y][x].type == "wall"){
+        if(MAP.tiles[y][x].type == "wall"){
             return true;
         }
         
@@ -16,20 +16,20 @@ function isColliding(y, x){
             if(handlePropCollision(x,y))
                 return true;
             else
-                Player.currentHeight = mapTiles[y][x].height 
+                Player.currentHeight = MAP.tiles[y][x].height 
         }
 
-        if(mapTiles[y][x].height != Player.currentHeight){
+        if(MAP.tiles[y][x].height != Player.currentHeight){
             return true;
         }
 
 
         return false;
         /* 
-        if(mapTiles[y][x].height != Player.currentHeight){
+        if(MAP.tiles[y][x].height != Player.currentHeight){
             return true;
         }else{
-            //Player.currentHeight = mapTiles[y][x].height //falling (also add > instead of != above)
+            //Player.currentHeight = MAP.tiles[y][x].height //falling (also add > instead of != above)
             return false;
         }
         */
@@ -37,7 +37,7 @@ function isColliding(y, x){
 }
 
 function handlePropCollision(x, y){
-    let tile = mapTiles[y][x];
+    let tile = MAP.tiles[y][x];
     let prop = tile.prop;
 
     if (prop) {

@@ -1,36 +1,36 @@
-let canvasHolder = document.querySelector("#canvas-holder");
+class Canvas{
+    static canvasHolder = document.querySelector("#canvas-holder");
+    constructor(canvas, width, height){
+        this.c = canvas;
+        this.CTX = this.c.getContext("2d");
+        this.c.width = width;
+        this.c.height = height;
+        Canvas.canvasHolder.appendChild(this.c);
+    }
+}
 // temporarily
 let baner = new Image();
 baner.src = "img/philosopherstalev1.png";
 
-const MAIN_CANVAS = document.createElement("canvas");
-MAIN_CANVAS.width = CANVAS_WIDTH;
-MAIN_CANVAS.height = CANVAS_HEIGHT;
-canvasHolder.appendChild(MAIN_CANVAS);
+const MAIN_CANVAS = new Canvas(document.createElement("canvas"), CANVAS_WIDTH, CANVAS_HEIGHT);
 
 // For UI
-const UI_CANVAS = document.createElement("canvas");
-UI_CANVAS.width = CANVAS_WIDTH;
-UI_CANVAS.height = CANVAS_HEIGHT;
-canvasHolder.appendChild(UI_CANVAS);
-
-const MAIN_CTX = MAIN_CANVAS.getContext("2d");
-const UI_CTX = UI_CANVAS.getContext("2d");
+const UI_CANVAS = new Canvas(document.createElement("canvas"), CANVAS_WIDTH, CANVAS_HEIGHT);
 
 // optimization
-MAIN_CTX.imageSmoothingEnabled = false;
-MAIN_CTX.mozImageSmoothingEnabled = false;
-MAIN_CTX.webkitImageSmoothingEnabled = false;
-MAIN_CTX.msImageSmoothingEnabled = false;
+MAIN_CANVAS.CTX.imageSmoothingEnabled = false;
+MAIN_CANVAS.CTX.mozImageSmoothingEnabled = false;
+MAIN_CANVAS.CTX.webkitImageSmoothingEnabled = false;
+MAIN_CANVAS.CTX.msImageSmoothingEnabled = false;
 
 function beginCanvas(){
-    clearCanvas(MAIN_CTX);
-    clearCanvas(UI_CTX);
+    clearCanvas(MAIN_CANVAS.CTX);
+    clearCanvas(UI_CANVAS.CTX);
     
-    drawMap(MAIN_CTX); // map/renderer.js
+    MAP.draw(MAIN_CANVAS.CTX);
 
-    drawPos();
-    drawGoldCount();
+    drawPos(UI_CANVAS.CTX);
+    drawGoldCount(UI_CANVAS.CTX);
 }
 
 function clearCanvas(ctx){
@@ -39,15 +39,15 @@ function clearCanvas(ctx){
 }
 
 //debug
-function drawPos(){
-    UI_CTX.font = '22px monospace';
-    UI_CTX.fillStyle = "#ffffff";
-    UI_CTX.fillText(`${Player.x}, ${Player.y}`, 0, 18);
-    UI_CTX.drawImage(baner, CANVAS_WIDTH-220, CANVAS_HEIGHT-60, 200, 40);
+function drawPos(ctx){
+    ctx.font = '22px monospace';
+    ctx.fillStyle = "#ffffff";
+    ctx.fillText(`${Player.x}, ${Player.y}`, 0, 18);
+    ctx.drawImage(baner, CANVAS_WIDTH-220, CANVAS_HEIGHT-60, 200, 40);
 }
-function drawGoldCount(){
-    UI_CTX.font = '30px monospace';
-    UI_CTX.fillStyle = "#ffffff";
-    UI_CTX.fillText(`${Player.gold}`, 50, CANVAS_HEIGHT - 50);
+function drawGoldCount(ctx){
+    ctx.font = '30px monospace';
+    ctx.fillStyle = "#ffffff";
+    ctx.fillText(`${Player.gold}`, 50, CANVAS_HEIGHT - 50);
     //UI_CTX.fillText(`${Player.gold}`, CANVAS_WIDTH - (CANVAS_WIDTH/10), CANVAS_HEIGHT -  (CANVAS_HEIGHT/10));
 }

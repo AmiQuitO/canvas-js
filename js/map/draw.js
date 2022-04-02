@@ -1,5 +1,5 @@
-function drawMap(ctx){
-    ctx.translate(0,Player.currentHeight * BASE_SCALE)
+Map.prototype.draw = (ctx) => {
+    ctx.translate(0,Player.currentHeight * BASE_SCALE); // move based on player height
 
     let baseX = (CANVAS_WIDTH/2) + (((-Player.x*BASE_SCALE)*2) - ((-Player.y*BASE_SCALE)*2));
     let baseY = (CANVAS_HEIGHT/2) - BASE_SCALE + (-Player.x*BASE_SCALE) + (-Player.y*BASE_SCALE);
@@ -15,7 +15,7 @@ function drawMap(ctx){
             }
 
             // drawing tiles
-            mapTiles[i][j].drawTile(x, y,j,i, 0, ctx);
+            MAP.tiles[i][j].drawTile(x, y,j,i, 0, ctx);
 
             // drawing the player
             if(i==Player.y && j==Player.x){
