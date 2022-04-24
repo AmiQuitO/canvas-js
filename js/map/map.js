@@ -1,17 +1,26 @@
 class Map{
-    generateMap(){};
+    static generateMap(){};
 
-    generateChunks(){};
-    generateDoors(){};
-    generateInteriors(){};
+    static generateChunks(){};
+    static generateDoors(){};
+    static generateInteriors(){};
 
-    generateBaseMap(){};
+    static generateBaseMap(){};
 
-    draw(){};
+    static newMap = () => {
+        
+        Map.chunks = Map.generateChunks();
+        Map.generateInteriors();
 
-    tiles = [];
+        Map.tiles = Map.generateBaseMap();
+        Map.generateDoors();
 
-    chunks = [];
-}
+        Map.generateMap();
+    }
 
-const MAP = new Map();
+    static draw(){};
+
+    static tiles = [];
+
+    static chunks = [];
+};

@@ -1,7 +1,6 @@
 const CHUNKS_SIZE = 23; // an odd number // normally 23
 const CHUNKS_ONEWAY_COUNT = 41; // must be an odd number
 
-
 const MAP_WIDTH = CHUNKS_SIZE*CHUNKS_ONEWAY_COUNT;
 const MAP_HEIGHT = MAP_WIDTH; // square map
 
@@ -12,10 +11,10 @@ const DUN_COLOR = ["#252525", "#aaa89c"];
 // color for background on dungeons? #e4dcb7
 
 /** @type {Tile[][]} */
-//let mapTiles = []; swapped for MAP.tiles = [];
+//let mapTiles = []; swapped for Map.tiles = [];
 
 /** @type {Chunk[]} */
-//let mapChunks = []; swapped for MAP.chunks = [];
+//let mapChunks = []; swapped for Map.chunks = [];
 
 let progressLevel = 1;
 const BASE_CHEST_COUNT = 1;

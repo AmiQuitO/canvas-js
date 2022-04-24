@@ -1,10 +1,6 @@
 window.addEventListener("DOMContentLoaded", function(){
     
-    MAP.generateChunks();
-    MAP.generateDoors();
-    MAP.generateInteriors();
-    MAP.generateBaseMap();
-    MAP.generateMap();
+    Map.newMap();
 
     beginCanvas();
 });

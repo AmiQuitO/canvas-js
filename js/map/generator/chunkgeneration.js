@@ -1,4 +1,4 @@
-Map.prototype.generateChunks = () => {
+Map.generateChunks = () => {
     let chunksCount = CHUNKS_BASE_COUNT + (progressLevel*2);
     chunksCount = Math.min(chunksCount, (CHUNKS_ONEWAY_COUNT * CHUNKS_ONEWAY_COUNT)-1);
     let loadedChunks = [];
@@ -42,5 +42,5 @@ Map.prototype.generateChunks = () => {
         }
 
     }while(loadedChunks.length <= chunksCount);
-    MAP.chunks = loadedChunks;
+    return loadedChunks;
 }

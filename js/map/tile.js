@@ -25,7 +25,7 @@ class Tile{
 
         // Don't obscure the player
         // if ((this.height - 1 > Player.currentHeight) && 
-        //     (MAP.tiles[gridY-Math.floor(this.height / 2)][gridX-Math.floor(this.height / 2)].height < this.height) &&
+        //     (Map.tiles[gridY-Math.floor(this.height / 2)][gridX-Math.floor(this.height / 2)].height < this.height) &&
         //     (Math.sqrt((gridX-Player.x) * (gridX-Player.x) + (gridY-Player.y) * (gridY-Player.y)) < radius)
         //     ) 
         //

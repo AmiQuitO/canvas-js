@@ -27,7 +27,7 @@ function beginCanvas(){
     clearCanvas(MAIN_CANVAS.CTX);
     clearCanvas(UI_CANVAS.CTX);
     
-    MAP.draw(MAIN_CANVAS.CTX);
+    Map.draw(MAIN_CANVAS.CTX);
 
     drawPos(UI_CANVAS.CTX);
     drawGoldCount(UI_CANVAS.CTX);
